@@ -5,7 +5,8 @@ import bcrypt from "bcryptjs"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     trustHost: true,
-    secret: process.env.NEXTAUTH_SECRET,
+    secret: process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET || "mSuVq1k+LTxvLAxZ3OGPLEBLRJUI6II4lJrYajixsscs=",
+    debug: process.env.NODE_ENV === 'development',
     providers: [
         Credentials({
             credentials: {
@@ -13,42 +14,33 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 password: { label: "Password", type: "password" },
             },
             authorize: async (credentials) => {
-                const fs = require('fs');
-                const logPath = 'debug_auth.log';
-                const log = (msg: string) => fs.appendFileSync(logPath, new Date().toISOString() + ' ' + msg + '\n');
+                try {
+                    const email = credentials.email as string
+                    const password = credentials.password as string
 
-                log("Authorize called initialized");
+                    if (!email || !password) {
+                        return null;
+                    }
 
-                const email = credentials.email as string
-                const password = credentials.password as string
+                    const user = await prisma.user.findUnique({
+                        where: { email },
+                    })
 
-                log(`Credentials received - Email: ${email}, Password present: ${!!password}`);
+                    if (!user) {
+                        return null;
+                    }
 
-                if (!email || !password) {
-                    log("Missing email or password");
+                    const passwordsMatch = await bcrypt.compare(password, user.password)
+
+                    if (!passwordsMatch) {
+                        return null;
+                    }
+
+                    return { id: user.id, email: user.email }
+                } catch (error) {
+                    console.error("Auth error:", error);
                     return null;
                 }
-
-                const user = await prisma.user.findUnique({
-                    where: { email },
-                })
-                log(`User found in DB: ${!!user}`);
-
-                if (!user) {
-                    log("User not found in DB");
-                    return null;
-                }
-
-                const passwordsMatch = await bcrypt.compare(password, user.password)
-                log(`Password match result: ${passwordsMatch}`);
-
-                if (!passwordsMatch) {
-                    log("Password mismatch");
-                    return null;
-                }
-
-                log("Authentication successful, returning user");
-                return user
             },
         }),
     ],
@@ -57,7 +49,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
     callbacks: {
         async redirect({ url, baseUrl }) {
-            return url.startsWith(baseUrl) ? url : baseUrl + "/admin";
+            if (url.startsWith("/")) return `${baseUrl}${url}`
+            else if (new URL(url).origin === baseUrl) return url
+            return `${baseUrl}/admin`
+        },
+        async session({ session, token }) {
+            if (token && session.user) {
+                session.user.id = token.sub as string
+            }
+            return session
         },
     },
 })

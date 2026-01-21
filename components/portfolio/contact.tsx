@@ -60,14 +60,9 @@ export function Contact() {
 
         {/* Footer Bottom */}
         <div className="pt-8 border-t border-border">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Muhammad Noman. All rights reserved.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Built with{" "}
-              <span className="text-primary">Next.js</span> &{" "}
-              <span className="text-primary">Tailwind CSS</span>
             </p>
           </div>
         </div>

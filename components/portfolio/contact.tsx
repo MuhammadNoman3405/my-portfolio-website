@@ -38,21 +38,21 @@ export function Contact() {
         </div>
 
         {/* Social Links */}
-        <div className="flex flex-wrap justify-center gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
           {socialLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               target={link.name !== "Email" ? "_blank" : undefined}
               rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
-              className="flex items-center gap-3 px-6 py-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all group"
+              className="flex items-center gap-3 px-6 py-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all group w-full"
             >
-              <link.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              <div className="text-left">
+              <link.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+              <div className="text-left min-w-0">
                 <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                   {link.name}
                 </p>
-                <p className="text-xs text-muted-foreground">{link.username}</p>
+                <p className="text-xs text-muted-foreground truncate">{link.username}</p>
               </div>
             </a>
           ))}

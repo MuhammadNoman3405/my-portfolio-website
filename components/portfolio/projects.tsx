@@ -109,7 +109,7 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
               onClick={() => setActiveFilter(filter.id)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeFilter === filter.id
                 ? "bg-primary text-primary-foreground"
-                : "bg-card text-foreground hover:bg-card/80 border border-border"
+                : "bg-background text-foreground hover:bg-primary/10 border border-primary/50"
                 }`}
             >
               {filter.label}

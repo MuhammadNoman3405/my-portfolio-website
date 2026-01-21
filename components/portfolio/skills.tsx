@@ -73,8 +73,8 @@ export function Skills({ initialSkills = [] }: { initialSkills?: Skill[] }) {
               type="button"
               onClick={() => setActiveCategory(category.id)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeCategory === category.id
-                ? "bg-primary text-primary-foreground"
-                : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-background text-foreground hover:bg-primary/10 border border-primary/50"
                 }`}
             >
               {category.label}

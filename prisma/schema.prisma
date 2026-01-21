@@ -50,7 +50,7 @@ model Certification {
 model Resume {
   id        String   @id @default(cuid())
   filename  String
-  fileData  Bytes
+  fileData  String   @db.Text
   mimeType  String
   uploadedAt DateTime @default(now())
   updatedAt DateTime @updatedAt

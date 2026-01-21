@@ -13,8 +13,11 @@ export async function GET() {
             return NextResponse.json({ error: "No resume found" }, { status: 404 });
         }
 
+        // Convert base64 back to buffer
+        const buffer = Buffer.from(resume.fileData, 'base64');
+
         // Return the PDF file
-        return new NextResponse(resume.fileData, {
+        return new NextResponse(buffer, {
             headers: {
                 'Content-Type': resume.mimeType,
                 'Content-Disposition': `attachment; filename="${resume.filename}"`,
@@ -47,6 +50,7 @@ export async function POST(request: NextRequest) {
 
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
+        const base64 = buffer.toString('base64');
 
         // Delete old resume if exists
         await prisma.resume.deleteMany({});
@@ -55,7 +59,7 @@ export async function POST(request: NextRequest) {
         const resume = await prisma.resume.create({
             data: {
                 filename: file.name,
-                fileData: buffer,
+                fileData: base64,
                 mimeType: file.type,
             },
         });

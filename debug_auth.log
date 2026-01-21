@@ -1,0 +1,64 @@
+2026-01-20T20:37:29.414Z Authorize called initialized
+2026-01-20T20:37:29.415Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-20T20:37:29.428Z User found in DB: false
+2026-01-20T20:37:29.428Z User not found in DB
+2026-01-20T20:41:23.609Z Authorize called initialized
+2026-01-20T20:41:23.610Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-20T20:41:23.619Z User found in DB: true
+2026-01-20T20:41:23.730Z Password match result: true
+2026-01-20T20:41:23.731Z Authentication successful, returning user
+2026-01-20T20:44:26.702Z Authorize called initialized
+2026-01-20T20:44:26.704Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-20T20:44:26.718Z User found in DB: true
+2026-01-20T20:44:26.872Z Password match result: true
+2026-01-20T20:44:26.877Z Authentication successful, returning user
+2026-01-20T20:48:04.479Z Authorize called initialized
+2026-01-20T20:48:04.481Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-20T20:48:04.485Z User found in DB: true
+2026-01-20T20:48:04.617Z Password match result: true
+2026-01-20T20:48:04.619Z Authentication successful, returning user
+2026-01-20T21:05:16.273Z Authorize called initialized
+2026-01-20T21:05:16.274Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-20T21:05:16.291Z User found in DB: true
+2026-01-20T21:05:16.401Z Password match result: false
+2026-01-20T21:05:16.402Z Password mismatch
+2026-01-20T21:05:24.725Z Authorize called initialized
+2026-01-20T21:05:24.726Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-20T21:05:24.730Z User found in DB: true
+2026-01-20T21:05:24.820Z Password match result: true
+2026-01-20T21:05:24.821Z Authentication successful, returning user
+2026-01-20T21:07:52.588Z Authorize called initialized
+2026-01-20T21:07:52.589Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-20T21:07:52.593Z User found in DB: true
+2026-01-20T21:07:52.700Z Password match result: true
+2026-01-20T21:07:52.701Z Authentication successful, returning user
+2026-01-20T21:20:37.523Z Authorize called initialized
+2026-01-20T21:20:37.525Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-20T21:20:37.655Z User found in DB: true
+2026-01-20T21:20:37.831Z Password match result: true
+2026-01-20T21:20:37.832Z Authentication successful, returning user
+2026-01-20T21:23:56.559Z Authorize called initialized
+2026-01-20T21:23:56.560Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-20T21:23:56.576Z User found in DB: true
+2026-01-20T21:23:56.744Z Password match result: true
+2026-01-20T21:23:56.745Z Authentication successful, returning user
+2026-01-20T21:35:49.284Z Authorize called initialized
+2026-01-20T21:35:49.286Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-20T21:35:49.311Z User found in DB: true
+2026-01-20T21:35:49.523Z Password match result: false
+2026-01-20T21:35:49.524Z Password mismatch
+2026-01-20T21:35:56.980Z Authorize called initialized
+2026-01-20T21:35:56.981Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-20T21:35:56.996Z User found in DB: true
+2026-01-20T21:35:57.171Z Password match result: true
+2026-01-20T21:35:57.172Z Authentication successful, returning user
+2026-01-21T03:42:54.841Z Authorize called initialized
+2026-01-21T03:42:54.848Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-21T03:42:55.038Z User found in DB: true
+2026-01-21T03:42:55.240Z Password match result: true
+2026-01-21T03:42:55.241Z Authentication successful, returning user
+2026-01-21T03:44:52.557Z Authorize called initialized
+2026-01-21T03:44:52.559Z Credentials received - Email: 23-cs-68@students.uettaxila.edu.pk, Password present: true
+2026-01-21T03:44:52.565Z User found in DB: true
+2026-01-21T03:44:52.702Z Password match result: true
+2026-01-21T03:44:52.703Z Authentication successful, returning user

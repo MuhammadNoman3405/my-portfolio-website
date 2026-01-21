@@ -23,7 +23,7 @@ const socialLinks = [
 
 export function Contact() {
   return (
-    <footer id="contact" className="py-20 bg-secondary/30">
+    <footer id="contact" className="py-12 sm:py-20 bg-secondary/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-6 mb-12">
           <p className="text-primary font-mono text-sm tracking-wider uppercase">

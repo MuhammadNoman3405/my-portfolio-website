@@ -89,7 +89,7 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
       : projectsToDisplay.filter((project) => project.category === activeFilter);
 
   return (
-    <section id="projects" className="py-20 bg-secondary/30">
+    <section id="projects" className="py-12 sm:py-20 bg-secondary/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-2 mb-12">
           <p className="text-primary font-mono text-sm tracking-wider uppercase">
@@ -108,8 +108,8 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
               type="button"
               onClick={() => setActiveFilter(filter.id)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeFilter === filter.id
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-card text-foreground hover:bg-card/80 border border-border"
+                ? "bg-primary text-primary-foreground"
+                : "bg-card text-foreground hover:bg-card/80 border border-border"
                 }`}
             >
               {filter.label}

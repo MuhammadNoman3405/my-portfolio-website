@@ -54,7 +54,7 @@ export function Skills({ initialSkills = [] }: { initialSkills?: Skill[] }) {
   };
 
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-12 sm:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-2 mb-12">
           <p className="text-primary font-mono text-sm tracking-wider uppercase">

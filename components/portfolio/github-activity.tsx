@@ -2,30 +2,53 @@
 
 import { useMemo, useState, useEffect } from "react";
 
+const GITHUB_USERNAME = "MuhammadNoman3405";
+
 export function GitHubActivity() {
-  // Generate mock contribution data
   const [contributions, setContributions] = useState<{ date: string; count: number }[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const data: { date: string; count: number }[] = [];
-    const today = new Date();
+    async function fetchGitHubContributions() {
+      try {
+        // Fetch contribution data from GitHub API
+        const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=last`);
+        const data = await response.json();
 
-    for (let i = 364; i >= 0; i--) {
-      const date = new Date(today);
-      date.setDate(date.getDate() - i);
-
-      // Generate random contribution count with some patterns
-      const dayOfWeek = date.getDay();
-      const baseChance = dayOfWeek === 0 || dayOfWeek === 6 ? 0.3 : 0.7;
-      const hasContribution = Math.random() < baseChance;
-      const count = hasContribution ? Math.floor(Math.random() * 12) + 1 : 0;
-
-      data.push({
-        date: date.toISOString().split('T')[0],
-        count,
-      });
+        if (data.contributions) {
+          const contributionData = data.contributions.map((contrib: any) => ({
+            date: contrib.date,
+            count: contrib.count,
+          }));
+          setContributions(contributionData);
+        } else {
+          // Fallback to empty data if API fails
+          generateFallbackData();
+        }
+      } catch (error) {
+        console.error("Failed to fetch GitHub contributions:", error);
+        generateFallbackData();
+      } finally {
+        setLoading(false);
+      }
     }
-    setContributions(data);
+
+    function generateFallbackData() {
+      const data: { date: string; count: number }[] = [];
+      const today = new Date();
+
+      for (let i = 364; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(date.getDate() - i);
+        data.push({
+          date: date.toISOString().split('T')[0],
+          count: 0,
+        });
+      }
+      setContributions(data);
+    }
+
+    fetchGitHubContributions();
   }, []);
 
   const getColor = (count: number) => {
@@ -74,7 +97,7 @@ export function GitHubActivity() {
               GitHub Contributions
             </h3>
             <span className="text-sm text-muted-foreground">
-              {totalContributions} contributions in the last year
+              {loading ? "Loading..." : `${totalContributions} contributions in the last year`}
             </span>
           </div>
 

@@ -1,7 +1,8 @@
 
+
 import { auth } from "@/auth"
 import { redirect } from "next/navigation"
-import { Contact, Home, Layers, Settings, ShieldCheck, User } from "lucide-react"
+import { Contact, Home, Layers, Settings, ShieldCheck, User, FileText } from "lucide-react"
 import Link from "next/link"
 
 export default async function AdminLayout({
@@ -52,6 +53,13 @@ export default async function AdminLayout({
                     >
                         <Settings className="h-4 w-4" />
                         Certifications
+                    </Link>
+                    <Link
+                        href="/admin/resume"
+                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted"
+                    >
+                        <FileText className="h-4 w-4" />
+                        Resume
                     </Link>
                 </nav>
             </div>

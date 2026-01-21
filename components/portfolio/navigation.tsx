@@ -26,11 +26,10 @@ export function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/90 backdrop-blur-md border-b border-border"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? "bg-background/90 backdrop-blur-md border-b border-border"
+        : "bg-transparent"
+        }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -49,9 +48,11 @@ export function Navigation() {
                 {link.label}
               </a>
             ))}
-            <Button size="sm" className="gap-2">
-              <Download className="w-4 h-4" />
-              Resume
+            <Button size="sm" className="gap-2" asChild>
+              <a href="/api/resume" download>
+                <Download className="w-4 h-4" />
+                Resume
+              </a>
             </Button>
           </div>
 
@@ -84,9 +85,11 @@ export function Navigation() {
                   {link.label}
                 </a>
               ))}
-              <Button size="sm" className="gap-2 w-fit">
-                <Download className="w-4 h-4" />
-                Resume
+              <Button size="sm" className="gap-2 w-fit" asChild>
+                <a href="/api/resume" download>
+                  <Download className="w-4 h-4" />
+                  Resume
+                </a>
               </Button>
             </div>
           </div>

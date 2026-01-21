@@ -46,3 +46,13 @@ model Certification {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
+
+model Resume {
+  id        String   @id @default(cuid())
+  filename  String
+  fileData  Bytes
+  mimeType  String
+  uploadedAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+

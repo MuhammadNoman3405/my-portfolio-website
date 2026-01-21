@@ -68,10 +68,6 @@ export function Contact() {
               Built with{" "}
               <span className="text-primary">Next.js</span> &{" "}
               <span className="text-primary">Tailwind CSS</span>
-              {" • "}
-              <a href="/auth/login" className="hover:text-primary transition-colors">
-                Admin
-              </a>
             </p>
           </div>
         </div>

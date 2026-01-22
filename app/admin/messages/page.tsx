@@ -34,9 +34,13 @@ export default async function MessagesPage() {
                                         <div className="flex items-center gap-2">
                                             <CardTitle className="text-lg">{message.name}</CardTitle>
                                             {message.read ? (
-                                                <CheckCircle2 className="w-4 h-4 text-primary" title="Read" />
+                                                <span title="Read">
+                                                    <CheckCircle2 className="w-4 h-4 text-primary" />
+                                                </span>
                                             ) : (
-                                                <Circle className="w-4 h-4 text-muted-foreground" title="Unread" />
+                                                <span title="Unread">
+                                                    <Circle className="w-4 h-4 text-muted-foreground" />
+                                                </span>
                                             )}
                                         </div>
                                         <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">

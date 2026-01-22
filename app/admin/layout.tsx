@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 import { redirect } from "next/navigation"
-import { Contact, Home, Layers, Settings, ShieldCheck, User, FileText } from "lucide-react"
+import { Contact, Home, Layers, Settings, ShieldCheck, User, FileText, GraduationCap, Briefcase, Award, Mail } from "lucide-react"
 import Link from "next/link"
 
 export default async function AdminLayout({
@@ -60,6 +60,34 @@ export default async function AdminLayout({
                     >
                         <FileText className="h-4 w-4" />
                         Resume
+                    </Link>
+                    <Link
+                        href="/admin/education"
+                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted"
+                    >
+                        <GraduationCap className="h-4 w-4" />
+                        Education
+                    </Link>
+                    <Link
+                        href="/admin/experience"
+                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted"
+                    >
+                        <Briefcase className="h-4 w-4" />
+                        Experience
+                    </Link>
+                    <Link
+                        href="/admin/achievements"
+                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted"
+                    >
+                        <Award className="h-4 w-4" />
+                        Achievements
+                    </Link>
+                    <Link
+                        href="/admin/messages"
+                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted"
+                    >
+                        <Mail className="h-4 w-4" />
+                        Messages
                     </Link>
                 </nav>
             </div>

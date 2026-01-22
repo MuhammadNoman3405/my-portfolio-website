@@ -89,9 +89,9 @@ export function GitHubActivity() {
   const totalContributions = contributions.reduce((sum, day) => sum + day.count, 0);
 
   return (
-    <section id="github" className="py-12 bg-pink-50/50">
+    <section id="github" className="py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-card border-pink-500/30 border rounded-lg p-6">
+        <div className="bg-card border border-border rounded-lg p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-foreground">
               GitHub Contributions

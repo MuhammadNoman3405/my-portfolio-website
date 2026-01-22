@@ -49,8 +49,8 @@ export default async function Portfolio() {
       <Skills initialSkills={skills} />
       <Experience />
       <Projects initialProjects={projects} />
-      <Achievements />
       <GitHubActivity />
+      <Achievements />
       <Certifications initialCertifications={certifications} />
       <Contact />
     </main>

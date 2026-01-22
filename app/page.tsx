@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/portfolio/navigation";
 import { Hero } from "@/components/portfolio/hero";
+import { Education } from "@/components/portfolio/education";
 import { Skills } from "@/components/portfolio/skills";
 import { Projects } from "@/components/portfolio/projects";
 import { Certifications } from "@/components/portfolio/certifications";
@@ -42,6 +43,7 @@ export default async function Portfolio() {
     <main className="min-h-screen bg-background">
       <Navigation />
       <Hero />
+      <Education />
       <Skills initialSkills={skills} />
       <Projects initialProjects={projects} />
       <GitHubActivity />

@@ -20,7 +20,7 @@ interface ProjectFormData {
     title: string
     description: string
     techStack: string
-    category: "ml" | "web" | "data"
+    category: "ml" | "web" | "data" | "semester"
     githubUrl: string
     liveUrl?: string
 }
@@ -94,6 +94,7 @@ export function ProjectForm({ initialData }: { initialData?: ProjectFormData }) 
                         <SelectItem value="ml">Machine Learning</SelectItem>
                         <SelectItem value="web">Web Development</SelectItem>
                         <SelectItem value="data">Data Analysis</SelectItem>
+                        <SelectItem value="semester">Semester Projects</SelectItem>
                     </SelectContent>
                 </Select>
             </div>

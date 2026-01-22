@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -50,9 +51,19 @@ export function Contact() {
       });
 
       if (response.ok) {
-        setStatus("success");
+        const data = await response.json();
+
+        if (data.warning) {
+          toast.warning(data.warning);
+          setStatus("success"); // Still success because message is saved
+        } else {
+          toast.success("Message sent successfully!");
+          setStatus("success");
+        }
+
         setFormData({ name: "", email: "", message: "" });
       } else {
+        toast.error("Failed to send message. Please try again.");
         setStatus("error");
       }
     } catch (error) {

@@ -47,7 +47,7 @@ export async function POST(
 
         if (!result.success) {
             return NextResponse.json(
-                { error: "Failed to send reply" },
+                { error: result.error || "Failed to send reply" },
                 { status: 500 }
             );
         }

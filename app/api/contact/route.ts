@@ -36,11 +36,22 @@ export async function POST(request: NextRequest) {
         const adminEmail = "23-cs-68@students.uettaxila.edu.pk";
         const emailHtml = getContactNotificationEmail(name, email, message);
 
-        await sendEmail({
+        const result = await sendEmail({
             to: adminEmail,
             subject: `New Contact Form Message from ${name}`,
             html: emailHtml,
         });
+
+        if (!result.success) {
+            console.error("Email send failed:", result.error);
+            // We return 200 because the message WAS saved to the database.
+            // But we include a warning so the frontend can notify the user/admin.
+            return NextResponse.json({
+                message: "Message sent successfully!",
+                id: contactMessage.id,
+                warning: "Message saved, but email notification failed (likely missing RESEND_API_KEY)."
+            });
+        }
 
         return NextResponse.json({
             message: "Message sent successfully!",

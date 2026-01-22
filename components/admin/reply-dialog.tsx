@@ -27,6 +27,7 @@ export function ReplyDialog({ messageId, recipientName, recipientEmail }: ReplyD
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [replyMessage, setReplyMessage] = useState("");
+    const [error, setError] = useState<string | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -39,14 +40,20 @@ export function ReplyDialog({ messageId, recipientName, recipientEmail }: ReplyD
                 body: JSON.stringify({ replyMessage }),
             });
 
-            if (!res.ok) throw new Error("Failed to send reply");
+            if (!res.ok) {
+                const data = await res.json();
+                throw new Error(data.error || "Failed to send reply");
+            }
 
             toast.success("Reply sent successfully!");
             setOpen(false);
+            setError(null);
             setReplyMessage("");
             router.refresh();
         } catch (error) {
-            toast.error("Failed to send reply");
+            const errorMessage = error instanceof Error ? error.message : "Failed to send reply";
+            setError(errorMessage);
+            toast.error(errorMessage);
         } finally {
             setLoading(false);
         }
@@ -79,6 +86,9 @@ export function ReplyDialog({ messageId, recipientName, recipientEmail }: ReplyD
                             required
                         />
                     </div>
+                    {error && (
+                        <p className="text-sm text-destructive">{error}</p>
+                    )}
                     <div className="flex justify-end gap-2">
                         <Button type="button" variant="outline" onClick={() => setOpen(false)}>
                             Cancel

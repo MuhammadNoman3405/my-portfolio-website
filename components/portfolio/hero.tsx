@@ -82,13 +82,13 @@ export function Hero() {
                 </div>
               </div>
               {/* Floating tech badges */}
-              <div className="absolute -top-4 -right-4 bg-card border border-border rounded-lg px-3 py-2 text-sm font-mono text-primary">
+              <div className="absolute top-0 right-8 bg-card border border-border rounded-lg px-3 py-2 text-sm font-mono text-primary">
                 Python
               </div>
-              <div className="absolute -bottom-4 -left-4 bg-card border border-border rounded-lg px-3 py-2 text-sm font-mono text-primary">
+              <div className="absolute bottom-8 -left-4 bg-card border border-border rounded-lg px-3 py-2 text-sm font-mono text-primary">
                 ML
               </div>
-              <div className="absolute top-1/2 -right-8 bg-card border border-border rounded-lg px-3 py-2 text-sm font-mono text-primary">
+              <div className="absolute bottom-8 right-0 bg-card border border-border rounded-lg px-3 py-2 text-sm font-mono text-primary">
                 SQL
               </div>
             </div>

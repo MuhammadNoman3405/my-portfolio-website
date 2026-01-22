@@ -2,7 +2,9 @@ import { Navigation } from "@/components/portfolio/navigation";
 import { Hero } from "@/components/portfolio/hero";
 import { Education } from "@/components/portfolio/education";
 import { Skills } from "@/components/portfolio/skills";
+import { Experience } from "@/components/portfolio/experience";
 import { Projects } from "@/components/portfolio/projects";
+import { Achievements } from "@/components/portfolio/achievements";
 import { Certifications } from "@/components/portfolio/certifications";
 import { GitHubActivity } from "@/components/portfolio/github-activity";
 import { Contact } from "@/components/portfolio/contact";
@@ -45,7 +47,9 @@ export default async function Portfolio() {
       <Hero />
       <Education />
       <Skills initialSkills={skills} />
+      <Experience />
       <Projects initialProjects={projects} />
+      <Achievements />
       <GitHubActivity />
       <Certifications initialCertifications={certifications} />
       <Contact />

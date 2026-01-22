@@ -19,18 +19,24 @@ import {
 
 interface DeleteButtonProps {
     id: string
-    type: "skills" | "projects" | "certifications"
-    name: string
+    type?: "skills" | "projects" | "certifications"
+    name?: string
+    endpoint?: string
+    itemName?: string
 }
 
-export function DeleteButton({ id, type, name }: DeleteButtonProps) {
+export function DeleteButton({ id, type, name, endpoint, itemName }: DeleteButtonProps) {
     const [isDeleting, setIsDeleting] = useState(false)
     const router = useRouter()
+
+    // Support both old and new prop names
+    const apiEndpoint = endpoint || type || "items"
+    const displayName = itemName || name || "item"
 
     const handleDelete = async () => {
         setIsDeleting(true)
         try {
-            const response = await fetch(`/api/${type}/${id}`, {
+            const response = await fetch(`/api/${apiEndpoint}/${id}`, {
                 method: "DELETE",
             })
 
@@ -38,10 +44,10 @@ export function DeleteButton({ id, type, name }: DeleteButtonProps) {
                 throw new Error("Failed to delete")
             }
 
-            toast.success(`${type.slice(0, -1)} deleted successfully`)
+            toast.success(`Deleted successfully`)
             router.refresh()
         } catch (error) {
-            toast.error(`Failed to delete ${type.slice(0, -1)}`)
+            toast.error(`Failed to delete`)
         } finally {
             setIsDeleting(false)
         }
@@ -58,7 +64,7 @@ export function DeleteButton({ id, type, name }: DeleteButtonProps) {
                 <AlertDialogHeader>
                     <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        This will permanently delete <strong>{name}</strong>. This action cannot be undone.
+                        This will permanently delete <strong>{displayName}</strong>. This action cannot be undone.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { sendEmail, getContactNotificationEmail } from "@/lib/email";
 
 // POST - Submit contact form
 export async function POST(request: NextRequest) {
@@ -29,6 +30,16 @@ export async function POST(request: NextRequest) {
                 email,
                 message,
             },
+        });
+
+        // Send email notification to admin
+        const adminEmail = "23-cs-68@students.uettaxila.edu.pk";
+        const emailHtml = getContactNotificationEmail(name, email, message);
+
+        await sendEmail({
+            to: adminEmail,
+            subject: `New Contact Form Message from ${name}`,
+            html: emailHtml,
         });
 
         return NextResponse.json({

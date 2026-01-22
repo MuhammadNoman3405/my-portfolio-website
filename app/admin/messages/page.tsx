@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Calendar, User } from "lucide-react";
+import { Mail, Calendar, CheckCircle2, Circle } from "lucide-react";
+import { ReplyDialog } from "@/components/admin/reply-dialog";
 
 export default async function MessagesPage() {
     const messages = await prisma.contactMessage.findMany({
@@ -12,7 +13,7 @@ export default async function MessagesPage() {
             <div>
                 <h1 className="text-3xl font-bold tracking-tight">Contact Messages</h1>
                 <p className="text-muted-foreground">
-                    View messages submitted through your portfolio contact form
+                    View and reply to messages submitted through your portfolio contact form
                 </p>
             </div>
 
@@ -26,15 +27,24 @@ export default async function MessagesPage() {
             ) : (
                 <div className="grid gap-4">
                     {messages.map((message) => (
-                        <Card key={message.id}>
+                        <Card key={message.id} className={message.read ? "opacity-75" : ""}>
                             <CardHeader>
                                 <div className="flex items-start justify-between">
-                                    <div className="space-y-1">
-                                        <CardTitle className="text-lg">{message.name}</CardTitle>
-                                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                                    <div className="space-y-1 flex-1">
+                                        <div className="flex items-center gap-2">
+                                            <CardTitle className="text-lg">{message.name}</CardTitle>
+                                            {message.read ? (
+                                                <CheckCircle2 className="w-4 h-4 text-primary" title="Read" />
+                                            ) : (
+                                                <Circle className="w-4 h-4 text-muted-foreground" title="Unread" />
+                                            )}
+                                        </div>
+                                        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                                             <div className="flex items-center gap-1">
                                                 <Mail className="w-3 h-3" />
-                                                <span>{message.email}</span>
+                                                <a href={`mailto:${message.email}`} className="hover:text-primary">
+                                                    {message.email}
+                                                </a>
                                             </div>
                                             <div className="flex items-center gap-1">
                                                 <Calendar className="w-3 h-3" />
@@ -50,6 +60,11 @@ export default async function MessagesPage() {
                                             </div>
                                         </div>
                                     </div>
+                                    <ReplyDialog
+                                        messageId={message.id}
+                                        recipientName={message.name}
+                                        recipientEmail={message.email}
+                                    />
                                 </div>
                             </CardHeader>
                             <CardContent>

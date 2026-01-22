@@ -5,11 +5,12 @@ import { auth } from "@/auth";
 // GET - Fetch single education entry
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
+        const { id } = await params;
         const education = await prisma.education.findUnique({
-            where: { id: params.id },
+            where: { id },
         });
 
         if (!education) {
@@ -32,7 +33,7 @@ export async function GET(
 // PUT - Update education entry (Admin only)
 export async function PUT(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const session = await auth();
@@ -40,9 +41,10 @@ export async function PUT(
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
+        const { id } = await params;
         const body = await request.json();
         const education = await prisma.education.update({
-            where: { id: params.id },
+            where: { id },
             data: body,
         });
 
@@ -59,7 +61,7 @@ export async function PUT(
 // DELETE - Delete education entry (Admin only)
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const session = await auth();
@@ -67,8 +69,9 @@ export async function DELETE(
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
+        const { id } = await params;
         await prisma.education.delete({
-            where: { id: params.id },
+            where: { id },
         });
 
         return NextResponse.json({ message: "Education deleted" });

@@ -6,7 +6,7 @@ import { sendEmail, getReplyEmail } from "@/lib/email";
 // POST - Reply to a message
 export async function POST(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const session = await auth();
@@ -14,6 +14,7 @@ export async function POST(
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
+        const { id } = await params;
         const { replyMessage } = await request.json();
 
         if (!replyMessage) {
@@ -25,7 +26,7 @@ export async function POST(
 
         // Get the original message
         const originalMessage = await prisma.contactMessage.findUnique({
-            where: { id: params.id },
+            where: { id },
         });
 
         if (!originalMessage) {
@@ -53,7 +54,7 @@ export async function POST(
 
         // Mark message as read
         await prisma.contactMessage.update({
-            where: { id: params.id },
+            where: { id },
             data: { read: true },
         });
 

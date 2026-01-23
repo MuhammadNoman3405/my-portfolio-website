@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 
-export function Hero() {
+import { prisma } from "@/lib/prisma";
+
+export async function Hero() {
+  const profile = await prisma.profile.findFirst();
+
   return (
     <section
       id="about"
@@ -15,17 +19,16 @@ export function Hero() {
                 Hello, I'm
               </p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground text-balance">
-                Muhammad Noman
+                {profile?.name || "Muhammad Noman"}
               </h1>
               <p className="text-xl sm:text-2xl text-muted-foreground">
-                BSCS Student & Aspiring Data Scientist
+                {profile?.headline || "BSCS Student & Aspiring Data Scientist"}
               </p>
             </div>
 
-            <p className="text-muted-foreground leading-relaxed max-w-lg">
-              I'm passionate about leveraging data to uncover insights and build
-              intelligent systems. Specializing in Machine Learning, Data
-              Analysis, and building scalable data solutions.
+            <p className="text-muted-foreground leading-relaxed max-w-lg whitespace-pre-wrap">
+              {profile?.description ||
+                "I'm passionate about leveraging data to uncover insights and build intelligent systems. Specializing in Machine Learning, Data Analysis, and building scalable data solutions."}
             </p>
 
             <div className="flex flex-wrap gap-4">

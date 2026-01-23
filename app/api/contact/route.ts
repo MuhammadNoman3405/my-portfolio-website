@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
         });
 
         // Send email notification to admin
-        const adminEmail = "23-cs-68@students.uettaxila.edu.pk";
+        const adminEmail = "mnomanjani3405@gmail.com";
         const emailHtml = getContactNotificationEmail(name, email, message);
 
         const result = await sendEmail({

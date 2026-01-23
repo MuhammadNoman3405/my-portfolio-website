@@ -20,7 +20,7 @@ export async function sendEmail({ to, subject, html }: SendEmailParams) {
       service: "gmail",
       auth: {
         user: GMAIL_USER,
-        pass: GMAIL_APP_PASSWORD,
+        pass: GMAIL_APP_PASSWORD?.replace(/\s/g, ""), // Remove spaces if present
       },
     });
 
@@ -114,7 +114,7 @@ export function getReplyEmail(recipientName: string, replyMessage: string) {
             <p style="margin-top: 30px;">
               Best regards,<br>
               <strong>Muhammad Noman</strong><br>
-              <a href="mailto:23-cs-68@students.uettaxila.edu.pk">23-cs-68@students.uettaxila.edu.pk</a>
+              <a href="mailto:mnomanjani3405@gmail.com">mnomanjani3405@gmail.com</a>
             </p>
           </div>
           <div class="footer">

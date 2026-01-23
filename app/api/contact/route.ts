@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({
                 message: "Message sent successfully!",
                 id: contactMessage.id,
-                warning: "Message saved, but email notification failed (likely missing RESEND_API_KEY)."
+                warning: "Message saved, but email notification failed (likely missing GMAIL_USER or GMAIL_APP_PASSWORD)."
             });
         }
 

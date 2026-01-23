@@ -1,52 +1,51 @@
-// Email utility for sending notifications
-// Using Resend for email delivery
+import nodemailer from "nodemailer";
 
 interface SendEmailParams {
-    to: string;
-    subject: string;
-    html: string;
+  to: string;
+  subject: string;
+  html: string;
 }
 
 export async function sendEmail({ to, subject, html }: SendEmailParams) {
-    const RESEND_API_KEY = process.env.RESEND_API_KEY;
+  const GMAIL_USER = process.env.GMAIL_USER;
+  const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
 
-    if (!RESEND_API_KEY) {
-        console.error("RESEND_API_KEY not configured");
-        return { success: false, error: "Email service not configured" };
+  if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
+    console.error("Gmail credentials not configured");
+    return { success: false, error: "Email service not configured (Missing GMAIL_USER or GMAIL_APP_PASSWORD)" };
+  }
+
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: GMAIL_USER,
+        pass: GMAIL_APP_PASSWORD,
+      },
+    });
+
+    const info = await transporter.sendMail({
+      from: `"Portfolio Contact" <${GMAIL_USER}>`,
+      to,
+      subject,
+      html,
+    });
+
+    console.log("Message sent: %s", info.messageId);
+    return { success: true, data: info };
+  } catch (error) {
+    console.error("Email error:", error);
+    let errorMessage = "Failed to send email";
+    if (error instanceof Error) {
+      errorMessage = error.message;
     }
-
-    try {
-        const response = await fetch("https://api.resend.com/emails", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${RESEND_API_KEY}`,
-            },
-            body: JSON.stringify({
-                from: "Portfolio Contact <onboarding@resend.dev>", // Use your verified domain later
-                to: [to],
-                subject,
-                html,
-            }),
-        });
-
-        if (!response.ok) {
-            const error = await response.text();
-            console.error("Email send failed:", error);
-            return { success: false, error };
-        }
-
-        const data = await response.json();
-        return { success: true, data };
-    } catch (error) {
-        console.error("Email error:", error);
-        return { success: false, error };
-    }
+    return { success: false, error: errorMessage };
+  }
 }
 
 // Template for contact notification
 export function getContactNotificationEmail(name: string, email: string, message: string) {
-    return `
+  return `
     <!DOCTYPE html>
     <html>
       <head>
@@ -89,7 +88,7 @@ export function getContactNotificationEmail(name: string, email: string, message
 
 // Template for reply email
 export function getReplyEmail(recipientName: string, replyMessage: string) {
-    return `
+  return `
     <!DOCTYPE html>
     <html>
       <head>

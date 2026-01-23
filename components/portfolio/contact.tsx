@@ -160,8 +160,8 @@ export function Contact() {
         {/* Footer Bottom */}
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Muhammad Noman. All rights reserved.
+            <p className="text-sm text-primary font-medium">
+              Made by Muhammad Noman 23-CS-068
             </p>
           </div>
         </div>

@@ -49,102 +49,50 @@ export function Certifications({ initialCertifications = [] }: { initialCertific
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Education Card */}
-          <Card className="bg-card border-border">
-            <CardContent className="p-6 space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-primary/10">
-                  <GraduationCap className="w-6 h-6 text-primary" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-semibold text-foreground">
-                    Bachelor of Science in Computer Science
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Specialization in Data Science
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <Badge className="bg-primary text-primary-foreground">
-                      4.0 SGPA
-                    </Badge>
-                    <span className="text-sm text-muted-foreground">
-                      Expected 2025
-                    </span>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {certificationsToDisplay.map((cert) => (
+            <Card
+              key={cert.title}
+              className="bg-card border-border hover:border-primary/50 transition-all group"
+            >
+              <CardContent className="p-4">
+                <div className="flex items-start gap-4">
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    <Award className="w-5 h-5 text-primary" />
                   </div>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-border">
-                <h4 className="text-sm font-medium text-foreground mb-2">
-                  Relevant Coursework
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Data Structures",
-                    "Machine Learning",
-                    "Database Systems",
-                    "Statistics",
-                    "Algorithms",
-                  ].map((course) => (
-                    <span
-                      key={course}
-                      className="px-2 py-1 rounded text-xs bg-secondary text-secondary-foreground"
-                    >
-                      {course}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Certifications List */}
-          <div className="space-y-4">
-            {certificationsToDisplay.map((cert) => (
-              <Card
-                key={cert.title}
-                className="bg-card border-border hover:border-primary/50 transition-all group"
-              >
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-lg bg-primary/10">
-                      <Award className="w-5 h-5 text-primary" />
+                  <div className="flex-1 space-y-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {cert.title}
+                      </h3>
+                      <a
+                        href={cert.credentialUrl || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                        aria-label={`View ${cert.title} credential`}
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
                     </div>
-                    <div className="flex-1 space-y-2">
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                          {cert.title}
-                        </h3>
-                        <a
-                          href={cert.credentialUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                          aria-label={`View ${cert.title} credential`}
+                    <p className="text-sm text-muted-foreground">
+                      {cert.issuer} • {cert.date}
+                    </p>
+                    <div className="flex flex-wrap gap-1">
+                      {cert.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground"
                         >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        {cert.issuer} • {cert.date}
-                      </p>
-                      <div className="flex flex-wrap gap-1">
-                        {cert.skills.map((skill) => (
-                          <span
-                            key={skill}
-                            className="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
+                          {skill}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

@@ -166,7 +166,7 @@ export function Contact() {
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <p className="text-sm text-primary font-medium flex items-center gap-2">
-              Made with <span className="text-red-500 animate-pulse">❤️</span>
+              <span className="text-primary animate-pulse">❤️</span> <span className="italic font-semibold">Muhammad Noman</span>
             </p>
           </div>
         </div>

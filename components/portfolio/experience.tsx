@@ -13,24 +13,26 @@ export async function Experience() {
         return (
             <section id="experience" className="py-12 sm:py-20 bg-secondary/30">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="space-y-2 mb-12 text-center">
-                        <p className="text-primary font-mono text-sm tracking-wider uppercase">
-                            Professional Journey
-                        </p>
-                        <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                            Experience
-                        </h2>
-                    </div>
-
-                    <Card className="bg-card border-border border-dashed">
-                        <CardContent className="p-12 text-center text-muted-foreground">
-                            <Briefcase className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                            <h3 className="text-xl font-semibold mb-2">Experience Section Ready</h3>
-                            <p>
-                                Add your work experience and internships in the Admin Panel to display them here.
+                    <ScrollAnimation className="space-y-12">
+                        <div className="space-y-2 text-center">
+                            <p className="text-primary font-mono text-sm tracking-wider uppercase">
+                                Professional Journey
                             </p>
-                        </CardContent>
-                    </Card>
+                            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+                                Experience
+                            </h2>
+                        </div>
+
+                        <Card className="bg-card border-border border-dashed">
+                            <CardContent className="p-12 text-center text-muted-foreground">
+                                <Briefcase className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                                <h3 className="text-xl font-semibold mb-2">Experience Section Ready</h3>
+                                <p>
+                                    Add your work experience and internships in the Admin Panel to display them here.
+                                </p>
+                            </CardContent>
+                        </Card>
+                    </ScrollAnimation>
                 </div>
             </section>
         );
@@ -43,16 +45,16 @@ export async function Experience() {
     return (
         <section id="experience" className="py-12 sm:py-20 bg-secondary/30">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="space-y-2 mb-12">
-                    <p className="text-primary font-mono text-sm tracking-wider uppercase">
-                        Professional Journey
-                    </p>
-                    <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                        Experience
-                    </h2>
-                </div>
+                <ScrollAnimation className="space-y-12">
+                    <div className="space-y-2 text-center">
+                        <p className="text-primary font-mono text-sm tracking-wider uppercase">
+                            Professional Journey
+                        </p>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+                            Experience
+                        </h2>
+                    </div>
 
-                <ScrollAnimation delay={200}>
                     <div className="space-y-6">
                         {experience.map((exp) => (
                             <Card key={exp.id} className="bg-card border-border hover:border-primary/50 transition-all">

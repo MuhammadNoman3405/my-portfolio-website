@@ -58,18 +58,18 @@ export function Skills({ initialSkills = [] }: { initialSkills?: Skill[] }) {
   return (
     <section id="skills" className="py-12 sm:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-2 mb-12 text-center">
-          <p className="text-primary font-mono text-sm tracking-wider uppercase">
-            Technical Expertise
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-            Skills & Technologies
-          </h2>
-        </div>
+        <ScrollAnimation className="space-y-12">
+          <div className="space-y-2 text-center">
+            <p className="text-primary font-mono text-sm tracking-wider uppercase">
+              Technical Expertise
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+              Skills & Technologies
+            </h2>
+          </div>
 
-        {/* Filter Buttons */}
-        <ScrollAnimation delay={200}>
-          <div className="flex flex-wrap gap-2 mb-8">
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((category) => (
               <button
                 key={category.id}
@@ -84,10 +84,8 @@ export function Skills({ initialSkills = [] }: { initialSkills?: Skill[] }) {
               </button>
             ))}
           </div>
-        </ScrollAnimation>
 
-        {/* Skills Grid */}
-        <ScrollAnimation delay={400}>
+          {/* Skills Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {filteredSkills.map((skill) => (
               <Card
@@ -108,25 +106,25 @@ export function Skills({ initialSkills = [] }: { initialSkills?: Skill[] }) {
               </Card>
             ))}
           </div>
-        </ScrollAnimation>
 
-        {/* Tech Stack Pills */}
-        <div className="mt-12">
-          <h3 className="text-lg font-semibold text-foreground mb-4">
-            Quick Overview
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {skillsToDisplay.map((skill) => (
-              <span
-                key={skill.name}
-                className="px-3 py-1 rounded-full text-sm font-medium bg-secondary text-secondary-foreground border border-border hover:border-primary/50 transition-colors cursor-default flex items-center gap-1"
-              >
-                <span>{skill.emoji}</span>
-                {skill.name}
-              </span>
-            ))}
+          {/* Tech Stack Pills */}
+          <div className="mt-12">
+            <h3 className="text-lg font-semibold text-foreground mb-4">
+              Quick Overview
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {skillsToDisplay.map((skill) => (
+                <span
+                  key={skill.name}
+                  className="px-3 py-1 rounded-full text-sm font-medium bg-secondary text-secondary-foreground border border-border hover:border-primary/50 transition-colors cursor-default flex items-center gap-1"
+                >
+                  <span>{skill.emoji}</span>
+                  {skill.name}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        </ScrollAnimation>
       </div>
     </section>
   );

@@ -100,18 +100,18 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
   return (
     <section id="projects" className="py-12 sm:py-20 bg-secondary/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-2 mb-12 text-center">
-          <p className="text-primary font-mono text-sm tracking-wider uppercase">
-            Featured Work
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-            Projects
-          </h2>
-        </div>
+        <ScrollAnimation className="space-y-12">
+          <div className="space-y-2 text-center">
+            <p className="text-primary font-mono text-sm tracking-wider uppercase">
+              Featured Work
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+              Projects
+            </h2>
+          </div>
 
-        {/* Filter Buttons */}
-        <ScrollAnimation delay={200}>
-          <div className="flex flex-wrap gap-2 mb-8">
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap gap-2 justify-center">
             {filters.map((filter) => (
               <button
                 key={filter.id}
@@ -126,10 +126,8 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
               </button>
             ))}
           </div>
-        </ScrollAnimation>
 
-        {/* Projects Grid */}
-        <ScrollAnimation delay={400}>
+          {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProjects.map((project) => (
               <Card

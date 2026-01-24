@@ -41,16 +41,16 @@ export function Certifications({ initialCertifications = [] }: { initialCertific
   return (
     <section id="certifications" className="py-12 sm:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-2 mb-12 text-center">
-          <p className="text-primary font-mono text-sm tracking-wider uppercase">
-            Education & Achievements
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-            Certifications
-          </h2>
-        </div>
+        <ScrollAnimation className="space-y-12">
+          <div className="space-y-2 text-center">
+            <p className="text-primary font-mono text-sm tracking-wider uppercase">
+              Education & Achievements
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+              Certifications
+            </h2>
+          </div>
 
-        <ScrollAnimation delay={200}>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {certificationsToDisplay.map((cert) => (
               <Card

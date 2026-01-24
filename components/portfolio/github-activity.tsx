@@ -91,9 +91,14 @@ export function GitHubActivity() {
   return (
     <section id="github" className="py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-card border border-border rounded-lg p-6">
+        <a
+          href={`https://github.com/${GITHUB_USERNAME}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-all group cursor-pointer"
+        >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-foreground">
+            <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
               GitHub Contributions
             </h3>
             <span className="text-sm text-muted-foreground">
@@ -131,7 +136,7 @@ export function GitHubActivity() {
             </div>
             <span className="text-xs text-muted-foreground">More</span>
           </div>
-        </div>
+        </a>
       </div>
     </section>
   );

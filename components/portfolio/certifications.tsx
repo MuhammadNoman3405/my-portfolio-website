@@ -49,51 +49,53 @@ export function Certifications({ initialCertifications = [] }: { initialCertific
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
               Certifications
             </h2>
+            <p className="text-sm text-muted-foreground mt-2">
+              Click on the certificate to verify
+            </p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {certificationsToDisplay.map((cert, index) => (
               <ScrollAnimation key={cert.title} delay={index * 100}>
-                <Card
-                  className="bg-card border-border hover:border-primary/50 transition-all group h-full"
+                <a
+                  href={cert.credentialUrl || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full cursor-pointer transition-transform hover:scale-[1.02]"
                 >
-                  <CardContent className="p-4">
-                    <div className="flex items-start gap-4">
-                      <div className="p-2 rounded-lg bg-primary/10">
-                        <Award className="w-5 h-5 text-primary" />
-                      </div>
-                      <div className="flex-1 space-y-2">
-                        <div className="flex items-start justify-between gap-2">
-                          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                            {cert.title}
-                          </h3>
-                          <a
-                            href={cert.credentialUrl || "#"}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-muted-foreground hover:text-primary transition-colors"
-                            aria-label={`View ${cert.title} credential`}
-                          >
-                            <ExternalLink className="w-4 h-4" />
-                          </a>
+                  <Card
+                    className="bg-card border-border hover:border-primary/50 transition-all group h-full"
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-start gap-4">
+                        <div className="p-2 rounded-lg bg-primary/10">
+                          <Award className="w-5 h-5 text-primary" />
                         </div>
-                        <p className="text-sm text-muted-foreground">
-                          {cert.issuer} • {cert.date}
-                        </p>
-                        <div className="flex flex-wrap gap-1">
-                          {cert.skills.map((skill) => (
-                            <span
-                              key={skill}
-                              className="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground"
-                            >
-                              {skill}
-                            </span>
-                          ))}
+                        <div className="flex-1 space-y-2">
+                          <div className="flex items-start justify-between gap-2">
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                              {cert.title}
+                            </h3>
+                            <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                          </div>
+                          <p className="text-sm text-muted-foreground">
+                            {cert.issuer} • {cert.date}
+                          </p>
+                          <div className="flex flex-wrap gap-1">
+                            {cert.skills.map((skill) => (
+                              <span
+                                key={skill}
+                                className="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </a>
               </ScrollAnimation>
             ))}
           </div>

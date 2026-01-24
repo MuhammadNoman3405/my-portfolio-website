@@ -2,6 +2,7 @@
 import { auth } from "@/auth"
 import { prisma } from "@/lib/prisma"
 import { NextResponse } from "next/server"
+import { getSkillEmoji } from "@/lib/skill-emoji-map"
 
 export async function PUT(
     req: Request,
@@ -15,12 +16,14 @@ export async function PUT(
 
     try {
         const json = await req.json()
+        const emoji = getSkillEmoji(json.name)
         const skill = await prisma.skill.update({
             where: { id },
             data: {
                 name: json.name,
                 level: json.level,
                 category: json.category,
+                emoji,
             },
         })
         return NextResponse.json(skill)

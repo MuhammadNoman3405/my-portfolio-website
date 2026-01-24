@@ -30,6 +30,7 @@ export async function POST(req: Request) {
                 category: json.category,
                 githubUrl: json.githubUrl,
                 liveUrl: json.liveUrl,
+                imageUrl: json.imageUrl,
             },
         })
         return NextResponse.json(project)

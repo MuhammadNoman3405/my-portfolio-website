@@ -40,8 +40,9 @@ export default async function SkillsPage() {
                     skills.map((skill) => (
                         <Card key={skill.id}>
                             <CardHeader className="flex flex-row items-center justify-between pb-2">
-                                <CardTitle className="text-lg font-semibold">
-                                    {skill.name}
+                                <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                                    <span>{skill.emoji || "🔧"}</span>
+                                    <span>{skill.name}</span>
                                 </CardTitle>
                                 <div className="flex gap-2">
                                     <Button variant="ghost" size="sm" asChild>

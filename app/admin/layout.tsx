@@ -5,6 +5,8 @@ import { redirect } from "next/navigation"
 import { Contact, Home, Layers, Settings, ShieldCheck, User, FileText, GraduationCap, Briefcase, Award, Mail } from "lucide-react"
 import Link from "next/link"
 
+// Last updated: 2026-01-23 06:35 - Force cache refresh
+
 export default async function AdminLayout({
     children,
 }: {
@@ -26,6 +28,7 @@ export default async function AdminLayout({
                     </Link>
                 </div>
                 <nav className="grid items-start px-2 text-sm font-medium lg:px-4 mt-6 gap-2">
+
                     <Link
                         href="/admin"
                         className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted"
@@ -38,8 +41,9 @@ export default async function AdminLayout({
                         className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted"
                     >
                         <User className="h-4 w-4" />
-                        Profile
+                        About & Profile
                     </Link>
+
                     <Link
                         href="/admin/projects"
                         className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted"
@@ -61,6 +65,7 @@ export default async function AdminLayout({
                         <Settings className="h-4 w-4" />
                         Certifications
                     </Link>
+
                     <Link
                         href="/admin/resume"
                         className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted"

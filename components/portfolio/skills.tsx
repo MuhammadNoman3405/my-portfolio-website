@@ -6,23 +6,24 @@ import { Badge } from "@/components/ui/badge";
 
 export interface Skill {
   name: string;
-  level: string; // Changed to string to match DB
-  category: string; // Changed to string to match DB
+  level: string;
+  category: string;
+  emoji?: string; // Added emoji field
 }
 
 const staticSkills: Skill[] = [
-  { name: "Python", level: "Expert", category: "language" },
-  { name: "SQL", level: "Advanced", category: "language" },
-  { name: "C++", level: "Intermediate", category: "language" },
-  { name: "Pandas", level: "Expert", category: "framework" },
-  { name: "Scikit-learn", level: "Advanced", category: "framework" },
-  { name: "Streamlit", level: "Advanced", category: "framework" },
-  { name: "Git", level: "Advanced", category: "tool" },
-  { name: "XAMPP", level: "Intermediate", category: "tool" },
-  { name: "NumPy", level: "Expert", category: "framework" },
-  { name: "Matplotlib", level: "Advanced", category: "framework" },
-  { name: "TensorFlow", level: "Intermediate", category: "framework" },
-  { name: "Jupyter", level: "Expert", category: "tool" },
+  { name: "Python", level: "Expert", category: "language", emoji: "🐍" },
+  { name: "SQL", level: "Advanced", category: "language", emoji: "🗄️" },
+  { name: "C++", level: "Intermediate", category: "language", emoji: "⚙️" },
+  { name: "Pandas", level: "Expert", category: "framework", emoji: "🐼" },
+  { name: "Scikit-learn", level: "Advanced", category: "framework", emoji: "🤖" },
+  { name: "Streamlit", level: "Advanced", category: "framework", emoji: "🎈" },
+  { name: "Git", level: "Advanced", category: "tool", emoji: "🔀" },
+  { name: "XAMPP", level: "Intermediate", category: "tool", emoji: "🔶" },
+  { name: "NumPy", level: "Expert", category: "framework", emoji: "🔢" },
+  { name: "Matplotlib", level: "Advanced", category: "framework", emoji: "📊" },
+  { name: "TensorFlow", level: "Intermediate", category: "framework", emoji: "🧠" },
+  { name: "Jupyter", level: "Expert", category: "tool", emoji: "📓" },
 ];
 
 const categories = [
@@ -73,8 +74,8 @@ export function Skills({ initialSkills = [] }: { initialSkills?: Skill[] }) {
               type="button"
               onClick={() => setActiveCategory(category.id)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeCategory === category.id
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-background text-foreground hover:bg-primary/10 border border-primary/50"
+                ? "bg-primary text-primary-foreground"
+                : "bg-background text-foreground hover:bg-primary/10 border border-primary/50"
                 }`}
             >
               {category.label}
@@ -90,9 +91,12 @@ export function Skills({ initialSkills = [] }: { initialSkills?: Skill[] }) {
               className="bg-card border-border hover:border-primary/50 transition-all group"
             >
               <CardContent className="p-4 space-y-3">
-                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                  {skill.name}
-                </h3>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl">{skill.emoji || "🔧"}</span>
+                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {skill.name}
+                  </h3>
+                </div>
                 <Badge className={getLevelColor(skill.level)}>
                   {skill.level}
                 </Badge>
@@ -110,8 +114,9 @@ export function Skills({ initialSkills = [] }: { initialSkills?: Skill[] }) {
             {skillsToDisplay.map((skill) => (
               <span
                 key={skill.name}
-                className="px-3 py-1 rounded-full text-sm font-medium bg-secondary text-secondary-foreground border border-border hover:border-primary/50 transition-colors cursor-default"
+                className="px-3 py-1 rounded-full text-sm font-medium bg-secondary text-secondary-foreground border border-border hover:border-primary/50 transition-colors cursor-default flex items-center gap-1"
               >
+                <span>{skill.emoji}</span>
                 {skill.name}
               </span>
             ))}

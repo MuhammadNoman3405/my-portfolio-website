@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Switch } from "@/components/ui/switch";
+import { ImageUpload } from "@/components/ui/image-upload";
 
 interface ProfileFormData {
     id?: string;
@@ -15,6 +16,7 @@ interface ProfileFormData {
     headline: string;
     description: string;
     resumeUrl?: string;
+    imageUrl?: string;
     available: boolean;
 }
 
@@ -27,6 +29,7 @@ export function ProfileForm({ initialData }: { initialData?: ProfileFormData }) 
             headline: "",
             description: "",
             resumeUrl: "",
+            imageUrl: "",
             available: true,
         }
     );
@@ -88,6 +91,12 @@ export function ProfileForm({ initialData }: { initialData?: ProfileFormData }) 
                     placeholder="Brief introduction about yourself..."
                 />
             </div>
+
+            <ImageUpload
+                label="Profile Picture"
+                value={formData.imageUrl}
+                onChange={(value) => setFormData({ ...formData, imageUrl: value })}
+            />
 
             <div className="flex items-center space-x-2">
                 <Switch

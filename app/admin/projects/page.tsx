@@ -49,14 +49,25 @@ export default async function ProjectsPage() {
                                     <DeleteButton id={project.id} type="projects" name={project.title} />
                                 </div>
                             </CardHeader>
-                            <CardContent>
-                                <p className="text-sm text-muted-foreground mb-2">
-                                    {project.description}
-                                </p>
-                                <div className="flex gap-2 text-xs">
-                                    <span className="bg-secondary px-2 py-1 rounded">
-                                        {project.category}
-                                    </span>
+                            <CardContent className="flex gap-4">
+                                {project.imageUrl && (
+                                    <div className="flex-shrink-0 w-24 h-16 rounded overflow-hidden border bg-muted">
+                                        <img
+                                            src={project.imageUrl}
+                                            alt={project.title}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                )}
+                                <div className="flex-1">
+                                    <p className="text-sm text-muted-foreground mb-2">
+                                        {project.description}
+                                    </p>
+                                    <div className="flex gap-2 text-xs">
+                                        <span className="bg-secondary px-2 py-1 rounded">
+                                            {project.category}
+                                        </span>
+                                    </div>
                                 </div>
                             </CardContent>
                         </Card>

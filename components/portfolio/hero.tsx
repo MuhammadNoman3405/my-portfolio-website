@@ -72,29 +72,43 @@ export async function Hero() {
             </div>
           </div>
 
-          {/* Right side - Decorative element */}
+          {/* Right side - Profile Picture or Decorative element */}
           <div className="hidden lg:flex justify-center">
-            <div className="relative">
-              <div className="w-72 h-72 rounded-full bg-primary/10 flex items-center justify-center">
-                <div className="w-56 h-56 rounded-full bg-primary/20 flex items-center justify-center">
-                  <div className="w-40 h-40 rounded-full bg-primary/30 flex items-center justify-center">
-                    <span className="text-6xl font-bold text-primary font-mono">
-                      {"</>"}
-                    </span>
+            {profile?.imageUrl ? (
+              <div className="relative">
+                <div className="w-80 h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
+                  <img
+                    src={profile.imageUrl}
+                    alt={profile.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                {/* Decorative ring */}
+                <div className="absolute inset-0 rounded-full border-2 border-primary/10 animate-pulse" style={{ animationDuration: '3s' }}></div>
+              </div>
+            ) : (
+              <div className="relative">
+                <div className="w-72 h-72 rounded-full bg-primary/10 flex items-center justify-center">
+                  <div className="w-56 h-56 rounded-full bg-primary/20 flex items-center justify-center">
+                    <div className="w-40 h-40 rounded-full bg-primary/30 flex items-center justify-center">
+                      <span className="text-6xl font-bold text-primary font-mono">
+                        {"</>"}
+                      </span>
+                    </div>
                   </div>
                 </div>
+                {/* Floating tech badges */}
+                <div className="absolute top-0 right-8 bg-card border border-border rounded-lg px-3 py-2 text-sm font-mono text-primary">
+                  Python
+                </div>
+                <div className="absolute bottom-8 -left-4 bg-card border border-border rounded-lg px-3 py-2 text-sm font-mono text-primary">
+                  ML
+                </div>
+                <div className="absolute bottom-8 right-0 bg-card border border-border rounded-lg px-3 py-2 text-sm font-mono text-primary">
+                  SQL
+                </div>
               </div>
-              {/* Floating tech badges */}
-              <div className="absolute top-0 right-8 bg-card border border-border rounded-lg px-3 py-2 text-sm font-mono text-primary">
-                Python
-              </div>
-              <div className="absolute bottom-8 -left-4 bg-card border border-border rounded-lg px-3 py-2 text-sm font-mono text-primary">
-                ML
-              </div>
-              <div className="absolute bottom-8 right-0 bg-card border border-border rounded-lg px-3 py-2 text-sm font-mono text-primary">
-                SQL
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

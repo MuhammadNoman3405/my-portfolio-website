@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
         }
 
         const body = await request.json();
-        const { name, headline, description, resumeUrl, available } = body;
+        const { name, headline, description, resumeUrl, available, imageUrl } = body;
 
         // Check if profile exists
         const existingProfile = await prisma.profile.findFirst();
@@ -33,11 +33,11 @@ export async function POST(request: NextRequest) {
         if (existingProfile) {
             profile = await prisma.profile.update({
                 where: { id: existingProfile.id },
-                data: { name, headline, description, resumeUrl, available },
+                data: { name, headline, description, resumeUrl, available, imageUrl },
             });
         } else {
             profile = await prisma.profile.create({
-                data: { name, headline, description, resumeUrl, available },
+                data: { name, headline, description, resumeUrl, available, imageUrl },
             });
         }
 

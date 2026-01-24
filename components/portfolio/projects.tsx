@@ -14,6 +14,7 @@ export interface Project {
   category: string;
   githubUrl: string | null;
   liveUrl?: string | null;
+  imageUrl?: string | null;
 }
 
 const staticProjects: Project[] = [
@@ -26,6 +27,7 @@ const staticProjects: Project[] = [
     category: "ml",
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
+    imageUrl: null,
   },
   {
     title: "Sales Dashboard Analytics",
@@ -35,6 +37,7 @@ const staticProjects: Project[] = [
     category: "data",
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
+    imageUrl: null,
   },
   {
     title: "Sentiment Analysis API",
@@ -43,6 +46,7 @@ const staticProjects: Project[] = [
     techStack: ["Python", "FastAPI", "NLTK", "Docker"],
     category: "ml",
     githubUrl: "https://github.com",
+    imageUrl: null,
   },
   {
     title: "Inventory Management System",
@@ -52,6 +56,7 @@ const staticProjects: Project[] = [
     category: "web",
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
+    imageUrl: null,
   },
   {
     title: "Image Classification Model",
@@ -60,6 +65,7 @@ const staticProjects: Project[] = [
     techStack: ["Python", "TensorFlow", "Keras", "NumPy"],
     category: "ml",
     githubUrl: "https://github.com",
+    imageUrl: null,
   },
   {
     title: "Data Pipeline Automation",
@@ -68,6 +74,7 @@ const staticProjects: Project[] = [
     techStack: ["Python", "Pandas", "Airflow", "PostgreSQL"],
     category: "data",
     githubUrl: "https://github.com",
+    imageUrl: null,
   },
 ];
 
@@ -123,8 +130,17 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
           {filteredProjects.map((project) => (
             <Card
               key={project.title}
-              className="bg-card border-border hover:border-primary/50 transition-all group"
+              className="bg-card border-border hover:border-primary/50 transition-all group overflow-hidden"
             >
+              {project.imageUrl && (
+                <div className="w-full h-48 overflow-hidden bg-muted">
+                  <img
+                    src={project.imageUrl}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  />
+                </div>
+              )}
               <CardHeader>
                 <CardTitle className="text-foreground group-hover:text-primary transition-colors">
                   {project.title}

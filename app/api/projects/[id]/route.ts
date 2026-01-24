@@ -24,6 +24,7 @@ export async function PUT(
                 category: json.category,
                 githubUrl: json.githubUrl,
                 liveUrl: json.liveUrl,
+                imageUrl: json.imageUrl,
             },
         })
         return NextResponse.json(project)

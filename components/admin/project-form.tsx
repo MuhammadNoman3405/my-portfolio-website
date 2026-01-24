@@ -14,6 +14,7 @@ import {
     SelectValue,
 } from "@/components/ui/select" // Need to create Select
 import { toast } from "sonner"
+import { ImageUpload } from "@/components/ui/image-upload"
 
 interface ProjectFormData {
     id?: string
@@ -23,6 +24,7 @@ interface ProjectFormData {
     category: "ml" | "web" | "data" | "semester"
     githubUrl: string
     liveUrl?: string
+    imageUrl?: string
 }
 
 export function ProjectForm({ initialData }: { initialData?: ProjectFormData }) {
@@ -36,6 +38,7 @@ export function ProjectForm({ initialData }: { initialData?: ProjectFormData }) 
             category: "ml",
             githubUrl: "",
             liveUrl: "",
+            imageUrl: "",
         }
     )
 
@@ -147,6 +150,13 @@ export function ProjectForm({ initialData }: { initialData?: ProjectFormData }) 
                     />
                 </div>
             </div>
+
+            <ImageUpload
+                label="Project Image"
+                value={formData.imageUrl}
+                onChange={(value) => setFormData({ ...formData, imageUrl: value })}
+            />
+            {/* Image upload field added */}
 
             <div className="flex gap-4">
                 <Button type="submit" disabled={loading}>

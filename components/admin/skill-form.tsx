@@ -13,6 +13,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { toast } from "sonner"
+import { getSkillEmoji } from "@/lib/skill-emoji-map"
 
 interface SkillFormData {
     id?: string
@@ -70,6 +71,16 @@ export function SkillForm({ initialData }: { initialData?: SkillFormData }) {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                 />
+            </div>
+
+            <div className="space-y-2">
+                <Label htmlFor="emoji">Auto-Assigned Emoji</Label>
+                <div className="flex items-center gap-3 p-3 bg-secondary/30 rounded-lg border">
+                    <span className="text-4xl">{getSkillEmoji(formData.name)}</span>
+                    <span className="text-sm text-muted-foreground">
+                        This emoji will be automatically assigned based on the skill name
+                    </span>
+                </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">

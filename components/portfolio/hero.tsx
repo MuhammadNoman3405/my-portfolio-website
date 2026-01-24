@@ -74,12 +74,12 @@ export async function Hero() {
 
           {/* Right side - Profile Picture or Decorative element */}
           <div className="hidden lg:flex justify-center">
-            {profile?.imageUrl ? (
+            {(profile as any)?.imageUrl ? (
               <div className="relative">
                 <div className="w-80 h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
                   <img
-                    src={profile.imageUrl}
-                    alt={profile.name}
+                    src={(profile as any).imageUrl}
+                    alt={(profile as any).name}
                     className="w-full h-full object-cover"
                   />
                 </div>

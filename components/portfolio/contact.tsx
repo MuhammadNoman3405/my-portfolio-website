@@ -165,8 +165,8 @@ export function Contact() {
         {/* Footer Bottom */}
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <p className="text-sm text-primary font-medium">
-              Made by Muhammad Noman 23-CS-068
+            <p className="text-sm text-primary font-medium flex items-center gap-2">
+              Made with <span className="text-red-500 animate-pulse">❤️</span>
             </p>
           </div>
         </div>

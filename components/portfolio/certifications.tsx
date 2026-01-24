@@ -41,7 +41,7 @@ export function Certifications({ initialCertifications = [] }: { initialCertific
   return (
     <section id="certifications" className="py-12 sm:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-2 mb-12">
+        <div className="space-y-2 mb-12 text-center">
           <p className="text-primary font-mono text-sm tracking-wider uppercase">
             Education & Achievements
           </p>

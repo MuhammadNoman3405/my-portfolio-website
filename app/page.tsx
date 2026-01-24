@@ -11,7 +11,8 @@ import { Contact } from "@/components/portfolio/contact";
 import { prisma } from "@/lib/prisma";
 
 // Revalidate every 60 seconds in production (change to 0 for instant updates during development)
-export const revalidate = 60;
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 async function getData() {
   try {

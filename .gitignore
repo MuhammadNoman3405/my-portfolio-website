@@ -36,7 +36,7 @@ next-env.d.ts
 # Database
 *.db
 *.db-journal
-portfolio.db
+!portfolio.db
 
 # IDE
 .vscode

@@ -3,17 +3,19 @@ import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 
 import { prisma } from "@/lib/prisma";
 
+import { ScrollAnimation } from "@/components/ui/scroll-animation";
+
 export async function Hero() {
   const profile = await prisma.profile.findFirst();
 
   return (
     <section
       id="about"
-      className="min-h-[60vh] sm:min-h-screen flex items-center justify-center pt-16"
+      className="min-h-[60vh] sm:min-h-screen flex items-center justify-center pt-24 pb-12 sm:pt-16 sm:pb-0"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+          <ScrollAnimation className="space-y-6 order-2 lg:order-1">
             <div className="space-y-2">
               <p className="text-primary font-mono text-sm tracking-wider uppercase">
                 Hello, I'm
@@ -70,13 +72,13 @@ export async function Hero() {
                 <Mail className="w-5 h-5" />
               </a>
             </div>
-          </div>
+          </ScrollAnimation>
 
           {/* Right side - Profile Picture or Decorative element */}
-          <div className="hidden lg:flex justify-center">
+          <ScrollAnimation className="flex justify-center order-1 lg:order-2" delay={200}>
             {(profile as any)?.imageUrl ? (
               <div className="relative">
-                <div className="w-80 h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
+                <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
                   <img
                     src={(profile as any).imageUrl}
                     alt={(profile as any).name}
@@ -88,10 +90,10 @@ export async function Hero() {
               </div>
             ) : (
               <div className="relative">
-                <div className="w-72 h-72 rounded-full bg-primary/10 flex items-center justify-center">
-                  <div className="w-56 h-56 rounded-full bg-primary/20 flex items-center justify-center">
-                    <div className="w-40 h-40 rounded-full bg-primary/30 flex items-center justify-center">
-                      <span className="text-6xl font-bold text-primary font-mono">
+                <div className="w-64 h-64 sm:w-72 sm:h-72 rounded-full bg-primary/10 flex items-center justify-center">
+                  <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-full bg-primary/20 flex items-center justify-center">
+                    <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-primary/30 flex items-center justify-center">
+                      <span className="text-4xl sm:text-6xl font-bold text-primary font-mono">
                         {"</>"}
                       </span>
                     </div>
@@ -109,7 +111,7 @@ export async function Hero() {
                 </div>
               </div>
             )}
-          </div>
+          </ScrollAnimation>
         </div>
       </div>
     </section>

@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
+import { ScrollAnimation } from "@/components/ui/scroll-animation";
 
 export interface Project {
   id?: string
@@ -109,95 +110,99 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap gap-2 mb-8">
-          {filters.map((filter) => (
-            <button
-              key={filter.id}
-              type="button"
-              onClick={() => setActiveFilter(filter.id)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeFilter === filter.id
-                ? "bg-primary text-primary-foreground"
-                : "bg-background text-foreground hover:bg-primary/10 border border-primary/50"
-                }`}
-            >
-              {filter.label}
-            </button>
-          ))}
-        </div>
+        <ScrollAnimation delay={200}>
+          <div className="flex flex-wrap gap-2 mb-8">
+            {filters.map((filter) => (
+              <button
+                key={filter.id}
+                type="button"
+                onClick={() => setActiveFilter(filter.id)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeFilter === filter.id
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-background text-foreground hover:bg-primary/10 border border-primary/50"
+                  }`}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
+        </ScrollAnimation>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
-            <Card
-              key={project.title}
-              className="bg-card border-border hover:border-primary/50 transition-all group overflow-hidden"
-            >
-              {project.imageUrl && (
-                <div className="w-full h-48 overflow-hidden bg-muted">
-                  <img
-                    src={project.imageUrl}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                  />
-                </div>
-              )}
-              <CardHeader>
-                <CardTitle className="text-foreground group-hover:text-primary transition-colors">
-                  {project.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {project.description}
-                </p>
+        <ScrollAnimation delay={400}>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProjects.map((project) => (
+              <Card
+                key={project.title}
+                className="bg-card border-border hover:border-primary/50 transition-all group overflow-hidden"
+              >
+                {project.imageUrl && (
+                  <div className="w-full h-48 overflow-hidden bg-muted">
+                    <img
+                      src={project.imageUrl}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                    />
+                  </div>
+                )}
+                <CardHeader>
+                  <CardTitle className="text-foreground group-hover:text-primary transition-colors">
+                    {project.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {project.description}
+                  </p>
 
-                {/* Tech Stack Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="secondary"
-                      className="bg-secondary text-secondary-foreground"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
+                  {/* Tech Stack Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack.map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="bg-secondary text-secondary-foreground"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
 
-                {/* Action Buttons */}
-                <div className="flex gap-2 pt-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    asChild
-                    className="gap-2 bg-transparent"
-                  >
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  {/* Action Buttons */}
+                  <div className="flex gap-2 pt-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      asChild
+                      className="gap-2 bg-transparent"
                     >
-                      <Github className="w-4 h-4" />
-                      View Code
-                    </a>
-                  </Button>
-                  {project.liveUrl && (
-                    <Button size="sm" asChild className="gap-2">
                       <a
-                        href={project.liveUrl}
+                        href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <ExternalLink className="w-4 h-4" />
-                        Live Demo
+                        <Github className="w-4 h-4" />
+                        View Code
                       </a>
                     </Button>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                    {project.liveUrl && (
+                      <Button size="sm" asChild className="gap-2">
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Live Demo
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </ScrollAnimation>
       </div>
     </section>
   );

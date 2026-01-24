@@ -1,6 +1,7 @@
 import { GraduationCap, Calendar } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
+import { ScrollAnimation } from "@/components/ui/scroll-animation";
 
 export async function Education() {
     const education = await prisma.education.findMany({
@@ -68,43 +69,45 @@ export async function Education() {
                     </h2>
                 </div>
 
-                <div className="space-y-6">
-                    {education.map((edu) => (
-                        <Card key={edu.id} className="bg-card border-border hover:border-primary/50 transition-all">
-                            <CardContent className="p-6">
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 rounded-lg bg-primary/10">
-                                        <GraduationCap className="w-6 h-6 text-primary" />
-                                    </div>
-                                    <div className="flex-1">
-                                        <h3 className="text-xl font-semibold text-foreground mb-1">
-                                            {edu.degree} in {edu.field}
-                                        </h3>
-                                        <p className="text-primary font-medium mb-2">
-                                            {edu.institution}
-                                        </p>
-                                        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-3">
-                                            <div className="flex items-center gap-1">
-                                                <Calendar className="w-4 h-4" />
-                                                <span>
-                                                    {edu.startDate} - {edu.current ? "Present" : edu.endDate || "N/A"}
-                                                </span>
+                <ScrollAnimation delay={200}>
+                    <div className="space-y-6">
+                        {education.map((edu) => (
+                            <Card key={edu.id} className="bg-card border-border hover:border-primary/50 transition-all">
+                                <CardContent className="p-6">
+                                    <div className="flex items-start gap-4">
+                                        <div className="p-3 rounded-lg bg-primary/10">
+                                            <GraduationCap className="w-6 h-6 text-primary" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-xl font-semibold text-foreground mb-1">
+                                                {edu.degree} in {edu.field}
+                                            </h3>
+                                            <p className="text-primary font-medium mb-2">
+                                                {edu.institution}
+                                            </p>
+                                            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-3">
+                                                <div className="flex items-center gap-1">
+                                                    <Calendar className="w-4 h-4" />
+                                                    <span>
+                                                        {edu.startDate} - {edu.current ? "Present" : edu.endDate || "N/A"}
+                                                    </span>
+                                                </div>
+                                                {edu.cgpa && (
+                                                    <span>• CGPA: {edu.cgpa}</span>
+                                                )}
                                             </div>
-                                            {edu.cgpa && (
-                                                <span>• CGPA: {edu.cgpa}</span>
+                                            {edu.description && (
+                                                <p className="text-muted-foreground">
+                                                    {edu.description}
+                                                </p>
                                             )}
                                         </div>
-                                        {edu.description && (
-                                            <p className="text-muted-foreground">
-                                                {edu.description}
-                                            </p>
-                                        )}
                                     </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </div>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </ScrollAnimation>
             </div>
         </section>
     );

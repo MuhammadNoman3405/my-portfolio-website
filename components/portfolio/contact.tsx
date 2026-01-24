@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { ScrollAnimation } from "@/components/ui/scroll-animation";
 
 const socialLinks = [
   {
@@ -89,73 +90,77 @@ export function Contact() {
         </div>
 
         {/* Contact Form */}
-        <div className="max-w-2xl mx-auto mb-12">
-          <form onSubmit={handleSubmit} className="space-y-4 bg-card p-6 rounded-lg border border-border">
-            <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
-              <Input
-                id="name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
-                placeholder="Your name"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
-                placeholder="your.email@example.com"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="message">Message</Label>
-              <Textarea
-                id="message"
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                required
-                placeholder="Your message..."
-                className="min-h-[120px]"
-              />
-            </div>
-            {status === "success" && (
-              <p className="text-sm text-primary">Message sent successfully! I'll get back to you soon.</p>
-            )}
-            {status === "error" && (
-              <p className="text-sm text-destructive">Failed to send message. Please try again.</p>
-            )}
-            <Button type="submit" disabled={loading} className="w-full">
-              <Send className="w-4 h-4 mr-2" />
-              {loading ? "Sending..." : "Send Message"}
-            </Button>
-          </form>
-        </div>
+        <ScrollAnimation delay={200}>
+          <div className="max-w-2xl mx-auto mb-12">
+            <form onSubmit={handleSubmit} className="space-y-4 bg-card p-6 rounded-lg border border-border">
+              <div className="space-y-2">
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
+                  placeholder="Your name"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                  placeholder="your.email@example.com"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="message">Message</Label>
+                <Textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  required
+                  placeholder="Your message..."
+                  className="min-h-[120px]"
+                />
+              </div>
+              {status === "success" && (
+                <p className="text-sm text-primary">Message sent successfully! I'll get back to you soon.</p>
+              )}
+              {status === "error" && (
+                <p className="text-sm text-destructive">Failed to send message. Please try again.</p>
+              )}
+              <Button type="submit" disabled={loading} className="w-full">
+                <Send className="w-4 h-4 mr-2" />
+                {loading ? "Sending..." : "Send Message"}
+              </Button>
+            </form>
+          </div>
+        </ScrollAnimation>
 
         {/* Social Links */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-          {socialLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              target={link.name !== "Email" ? "_blank" : undefined}
-              rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
-              className="flex items-center gap-3 px-6 py-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all group w-full"
-            >
-              <link.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
-              <div className="text-left min-w-0">
-                <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                  {link.name}
-                </p>
-                <p className="text-xs text-muted-foreground truncate">{link.username}</p>
-              </div>
-            </a>
-          ))}
-        </div>
+        <ScrollAnimation delay={400}>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
+            {socialLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                target={link.name !== "Email" ? "_blank" : undefined}
+                rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
+                className="flex items-center gap-3 px-6 py-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all group w-full"
+              >
+                <link.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+                <div className="text-left min-w-0">
+                  <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                    {link.name}
+                  </p>
+                  <p className="text-xs text-muted-foreground truncate">{link.username}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </ScrollAnimation>
 
         {/* Footer Bottom */}
         <div className="pt-8 border-t border-border">

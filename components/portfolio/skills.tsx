@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ScrollAnimation } from "@/components/ui/scroll-animation";
 
 export interface Skill {
   name: string;
@@ -67,43 +68,47 @@ export function Skills({ initialSkills = [] }: { initialSkills?: Skill[] }) {
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap gap-2 mb-8">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              type="button"
-              onClick={() => setActiveCategory(category.id)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeCategory === category.id
-                ? "bg-primary text-primary-foreground"
-                : "bg-background text-foreground hover:bg-primary/10 border border-primary/50"
-                }`}
-            >
-              {category.label}
-            </button>
-          ))}
-        </div>
+        <ScrollAnimation delay={200}>
+          <div className="flex flex-wrap gap-2 mb-8">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                type="button"
+                onClick={() => setActiveCategory(category.id)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeCategory === category.id
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-background text-foreground hover:bg-primary/10 border border-primary/50"
+                  }`}
+              >
+                {category.label}
+              </button>
+            ))}
+          </div>
+        </ScrollAnimation>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {filteredSkills.map((skill) => (
-            <Card
-              key={skill.name}
-              className="bg-card border-border hover:border-primary/50 transition-all group"
-            >
-              <CardContent className="p-4 space-y-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">{skill.emoji || "🔧"}</span>
-                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {skill.name}
-                  </h3>
-                </div>
-                <Badge className={getLevelColor(skill.level)}>
-                  {skill.level}
-                </Badge>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <ScrollAnimation delay={400}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            {filteredSkills.map((skill) => (
+              <Card
+                key={skill.name}
+                className="bg-card border-border hover:border-primary/50 transition-all group"
+              >
+                <CardContent className="p-4 space-y-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">{skill.emoji || "🔧"}</span>
+                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {skill.name}
+                    </h3>
+                  </div>
+                  <Badge className={getLevelColor(skill.level)}>
+                    {skill.level}
+                  </Badge>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </ScrollAnimation>
 
         {/* Tech Stack Pills */}
         <div className="mt-12">

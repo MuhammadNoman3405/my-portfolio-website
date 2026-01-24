@@ -33,6 +33,7 @@ export default async function EditProjectPage({
                         category: project.category as "ml" | "web" | "data",
                         githubUrl: project.githubUrl || "",
                         liveUrl: project.liveUrl || "",
+                        imageUrl: project.imageUrl || "",
                     }}
                 />
             </div>

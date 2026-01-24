@@ -87,23 +87,24 @@ export function Skills({ initialSkills = [] }: { initialSkills?: Skill[] }) {
 
           {/* Skills Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {filteredSkills.map((skill) => (
-              <Card
-                key={skill.name}
-                className="bg-card border-border hover:border-primary/50 transition-all group"
-              >
-                <CardContent className="p-4 space-y-3">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl">{skill.emoji || "🔧"}</span>
-                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {skill.name}
-                    </h3>
-                  </div>
-                  <Badge className={getLevelColor(skill.level)}>
-                    {skill.level}
-                  </Badge>
-                </CardContent>
-              </Card>
+            {filteredSkills.map((skill, index) => (
+              <ScrollAnimation key={skill.name} delay={index * 50}>
+                <Card
+                  className="bg-card border-border hover:border-primary/50 transition-all group h-full"
+                >
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl">{skill.emoji || "🔧"}</span>
+                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {skill.name}
+                      </h3>
+                    </div>
+                    <Badge className={getLevelColor(skill.level)}>
+                      {skill.level}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              </ScrollAnimation>
             ))}
           </div>
 

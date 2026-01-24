@@ -129,75 +129,76 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
 
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project) => (
-              <Card
-                key={project.title}
-                className="bg-card border-border hover:border-primary/50 transition-all group overflow-hidden"
-              >
-                {project.imageUrl && (
-                  <div className="w-full h-48 overflow-hidden bg-muted">
-                    <img
-                      src={project.imageUrl}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                    />
-                  </div>
-                )}
-                <CardHeader>
-                  <CardTitle className="text-foreground group-hover:text-primary transition-colors">
-                    {project.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {project.description}
-                  </p>
+            {filteredProjects.map((project, index) => (
+              <ScrollAnimation key={project.title} delay={index * 100}>
+                <Card
+                  className="bg-card border-border hover:border-primary/50 transition-all group overflow-hidden h-full"
+                >
+                  {project.imageUrl && (
+                    <div className="w-full h-48 overflow-hidden bg-muted">
+                      <img
+                        src={project.imageUrl}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                      />
+                    </div>
+                  )}
+                  <CardHeader>
+                    <CardTitle className="text-foreground group-hover:text-primary transition-colors">
+                      {project.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {project.description}
+                    </p>
 
-                  {/* Tech Stack Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.techStack.map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="secondary"
-                        className="bg-secondary text-secondary-foreground"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
+                    {/* Tech Stack Tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.techStack.map((tech) => (
+                        <Badge
+                          key={tech}
+                          variant="secondary"
+                          className="bg-secondary text-secondary-foreground"
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex gap-2 pt-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      asChild
-                      className="gap-2 bg-transparent"
-                    >
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    {/* Action Buttons */}
+                    <div className="flex gap-2 pt-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        asChild
+                        className="gap-2 bg-transparent"
                       >
-                        <Github className="w-4 h-4" />
-                        View Code
-                      </a>
-                    </Button>
-                    {project.liveUrl && (
-                      <Button size="sm" asChild className="gap-2">
                         <a
-                          href={project.liveUrl}
+                          href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <ExternalLink className="w-4 h-4" />
-                          Live Demo
+                          <Github className="w-4 h-4" />
+                          View Code
                         </a>
                       </Button>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+                      {project.liveUrl && (
+                        <Button size="sm" asChild className="gap-2">
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                            Live Demo
+                          </a>
+                        </Button>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              </ScrollAnimation>
             ))}
           </div>
         </ScrollAnimation>

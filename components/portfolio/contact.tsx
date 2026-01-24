@@ -77,7 +77,7 @@ export function Contact() {
   return (
     <footer id="contact" className="py-12 sm:py-20 bg-secondary/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center space-y-6 mb-12">
+        <ScrollAnimation className="space-y-6 mb-12 text-center">
           <p className="text-primary font-mono text-sm tracking-wider uppercase">
             Get in Touch
           </p>
@@ -87,7 +87,7 @@ export function Contact() {
           <p className="text-muted-foreground max-w-md mx-auto">
             {"I'm always open to discussing new projects, opportunities, or just having a chat about data science and machine learning."}
           </p>
-        </div>
+        </ScrollAnimation>
 
         {/* Contact Form */}
         <ScrollAnimation delay={200}>
@@ -166,7 +166,7 @@ export function Contact() {
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <p className="text-sm text-primary font-medium flex items-center gap-2">
-              <span className="text-primary animate-pulse">❤️</span> <span className="italic font-semibold">Muhammad Noman</span>
+              Reserved by <span className="text-primary animate-pulse">❤️</span> <span className="font-semibold">Muhammad Noman</span>
             </p>
           </div>
         </div>

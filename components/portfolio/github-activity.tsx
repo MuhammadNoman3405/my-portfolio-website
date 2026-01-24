@@ -92,7 +92,7 @@ export function GitHubActivity() {
   return (
     <section id="github" className="py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-2 mb-8 text-center">
+        <ScrollAnimation className="space-y-2 mb-8 text-center">
           <p className="text-primary font-mono text-sm tracking-wider uppercase">
             Open Source
           </p>
@@ -102,7 +102,7 @@ export function GitHubActivity() {
           <p className="text-sm text-muted-foreground mt-2">
             Click the card below to view my GitHub profile
           </p>
-        </div>
+        </ScrollAnimation>
         <ScrollAnimation delay={200}>
           <a
             href={`https://github.com/${GITHUB_USERNAME}`}

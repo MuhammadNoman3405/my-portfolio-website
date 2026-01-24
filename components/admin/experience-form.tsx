@@ -18,7 +18,7 @@ interface ExperienceFormData {
     endDate?: string;
     current: boolean;
     description: string;
-    type: "work" | "internship" | "volunteer";
+    type: "work" | "internship" | "volunteer" | "student";
 }
 
 export function ExperienceForm({ initialData }: { initialData?: ExperienceFormData }) {
@@ -110,6 +110,7 @@ export function ExperienceForm({ initialData }: { initialData?: ExperienceFormDa
                     <SelectContent>
                         <SelectItem value="work">Full-time Work</SelectItem>
                         <SelectItem value="internship">Internship</SelectItem>
+                        <SelectItem value="student">Student</SelectItem>
                         <SelectItem value="volunteer">Volunteer</SelectItem>
                     </SelectContent>
                 </Select>

@@ -1,4 +1,4 @@
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { Briefcase, Calendar, MapPin, GraduationCap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
@@ -39,6 +39,9 @@ export async function Experience() {
     }
 
     const getTypeIcon = (type: string) => {
+        if (type === "student") {
+            return <GraduationCap className="w-6 h-6 text-primary" />;
+        }
         return <Briefcase className="w-6 h-6 text-primary" />;
     };
 
@@ -84,7 +87,7 @@ export async function Experience() {
                                                     </div>
                                                 )}
                                                 <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs">
-                                                    {exp.type === "work" ? "Full-time" : exp.type === "internship" ? "Internship" : "Volunteer"}
+                                                    {exp.type === "work" ? "Full-time" : exp.type === "internship" ? "Internship" : exp.type === "student" ? "Student" : "Volunteer"}
                                                 </span>
                                             </div>
                                             <p className="text-muted-foreground whitespace-pre-wrap">

@@ -13,7 +13,8 @@ async function getStats() {
             educationCount,
             experienceCount,
             achievementsCount,
-            messagesCount
+            messagesCount,
+            visitsCount
         ] = await Promise.all([
             prisma.project.count(),
             prisma.skill.count(),
@@ -22,6 +23,7 @@ async function getStats() {
             prisma.experience.count(),
             prisma.achievement.count(),
             prisma.contactMessage.count({ where: { read: false } }),
+            prisma.visit.count(), // Fetch visit count
         ])
         return {
             projectsCount,
@@ -30,7 +32,8 @@ async function getStats() {
             educationCount,
             experienceCount,
             achievementsCount,
-            messagesCount
+            messagesCount,
+            visitsCount
         }
     } catch (error) {
         console.error("Failed to fetch stats", error)
@@ -41,7 +44,8 @@ async function getStats() {
             educationCount: 0,
             experienceCount: 0,
             achievementsCount: 0,
-            messagesCount: 0
+            messagesCount: 0,
+            visitsCount: 0
         }
     }
 }
@@ -131,6 +135,15 @@ export default async function AdminDashboard() {
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">{stats.certificationsCount}</div>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">Total Visits</CardTitle>
+                        <User className="h-4 w-4 text-muted-foreground" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-2xl font-bold">{stats.visitsCount}</div>
                     </CardContent>
                 </Card>
             </div>

@@ -119,3 +119,11 @@ model ContactMessage {
   createdAt DateTime @default(now())
 }
 
+model Visit {
+  id        String   @id @default(cuid())
+  path      String
+  ip        String?
+  userAgent String?
+  createdAt DateTime @default(now())
+}
+

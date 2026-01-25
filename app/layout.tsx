@@ -1,6 +1,8 @@
 import React from "react"
 import type { Metadata } from 'next'
+import { auth } from "@/auth"
 import { Geist, Geist_Mono } from 'next/font/google'
+
 import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from "sonner"
 import { TrafficTracker } from "@/components/traffic-tracker"
@@ -32,17 +34,21 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const session = await auth()
+
   return (
     <html lang="en">
       <body className={`font-sans antialiased`}>
         {children}
-        <TrafficTracker />
+        {/* Only track if user is NOT logged in (session.user is undefined) */}
+        <TrafficTracker shouldTrack={!session?.user} />
         <Analytics />
+
         <Toaster richColors position="top-center" />
       </body>
     </html>

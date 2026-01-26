@@ -21,7 +21,7 @@ export function AchievementCard({ achievement, getTypeIcon }: { achievement: any
                         {getTypeIcon(achievement.type)}
                     </div>
                     <div className="flex-1 min-w-0">
-                        <h3 className="text-lg font-semibold text-foreground mb-1 truncate">
+                        <h3 className="text-lg font-semibold text-foreground mb-1">
                             {achievement.title}
                         </h3>
                         <p className="text-primary font-medium text-sm mb-2 truncate">

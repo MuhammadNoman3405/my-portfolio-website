@@ -105,6 +105,8 @@ model Achievement {
   issuer      String
   date        String
   description String?
+  imageUrl    String?
+  linkUrl     String?
   type        String   // "award", "certification", "achievement"
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

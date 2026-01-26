@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import { ImageUpload } from "@/components/ui/image-upload";
 
 interface AchievementFormData {
     id?: string;
@@ -16,6 +17,8 @@ interface AchievementFormData {
     date: string;
     description?: string;
     type: "award" | "certification" | "achievement";
+    imageUrl?: string;
+    linkUrl?: string;
 }
 
 export function AchievementForm({ initialData }: { initialData?: AchievementFormData }) {
@@ -27,6 +30,8 @@ export function AchievementForm({ initialData }: { initialData?: AchievementForm
             issuer: "",
             date: "",
             description: "",
+            imageUrl: "",
+            linkUrl: "",
             type: "achievement",
         }
     );
@@ -111,6 +116,16 @@ export function AchievementForm({ initialData }: { initialData?: AchievementForm
             </div>
 
             <div className="space-y-2">
+                <Label htmlFor="linkUrl">Link URL (Optional)</Label>
+                <Input
+                    id="linkUrl"
+                    value={formData.linkUrl || ""}
+                    onChange={(e) => setFormData({ ...formData, linkUrl: e.target.value })}
+                    placeholder="https://example.com/certificate"
+                />
+            </div>
+
+            <div className="space-y-2">
                 <Label htmlFor="description">Description (Optional)</Label>
                 <Textarea
                     id="description"
@@ -120,6 +135,12 @@ export function AchievementForm({ initialData }: { initialData?: AchievementForm
                     placeholder="Details about the achievement..."
                 />
             </div>
+
+            <ImageUpload
+                label="Achievement Image"
+                value={formData.imageUrl}
+                onChange={(value) => setFormData({ ...formData, imageUrl: value })}
+            />
 
             <div className="flex gap-4">
                 <Button type="submit" disabled={loading}>

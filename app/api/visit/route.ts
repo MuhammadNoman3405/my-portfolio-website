@@ -10,7 +10,11 @@ export async function POST(req: NextRequest) {
 
         // 1. Try Vercel Headers first (closest to edge)
         let country = req.headers.get("x-vercel-ip-country");
+        country = country ? decodeURIComponent(country) : null;
+
         let city = req.headers.get("x-vercel-ip-city");
+        city = city ? decodeURIComponent(city) : null;
+
         let device = "Desktop"; // Default
 
         if (userAgent.includes("Mobile")) device = "Mobile";

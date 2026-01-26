@@ -6,6 +6,11 @@ import { MessageItem } from "@/components/admin/message-item";
 export default async function MessagesPage() {
     const messages = await prisma.contactMessage.findMany({
         orderBy: { createdAt: "desc" },
+        include: {
+            replies: {
+                orderBy: { createdAt: 'asc' }
+            }
+        }
     });
 
     return (

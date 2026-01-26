@@ -28,6 +28,11 @@ interface MessageItemProps {
         message: string;
         read: boolean;
         createdAt: Date;
+        replies: {
+            id: string;
+            content: string;
+            createdAt: Date;
+        }[];
     };
 }
 
@@ -74,7 +79,7 @@ export function MessageItem({ message }: MessageItemProps) {
     };
 
     return (
-        <Card className={cn("transition-all", message.read ? "opacity-75 bg-secondary/10" : "bg-card border-l-4 border-l-primary")}>
+        <Card className={cn("transition-all", message.read ? "opacity-90 bg-secondary/5" : "bg-card border-l-4 border-l-primary")}>
             <CardHeader>
                 <div className="flex items-start justify-between gap-4">
                     <div className="space-y-1 flex-1">
@@ -147,8 +152,34 @@ export function MessageItem({ message }: MessageItemProps) {
                     </div>
                 </div>
             </CardHeader>
-            <CardContent>
-                <p className="text-foreground whitespace-pre-wrap">{message.message}</p>
+            <CardContent className="space-y-4">
+                <div className="bg-muted/50 p-4 rounded-lg">
+                    <p className="text-foreground whitespace-pre-wrap">{message.message}</p>
+                </div>
+
+                {message.replies && message.replies.length > 0 && (
+                    <div className="pl-4 border-l-2 border-primary/20 space-y-4 mt-4">
+                        <h4 className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                            Reply History
+                        </h4>
+                        {message.replies.map((reply) => (
+                            <div key={reply.id} className="bg-primary/5 p-3 rounded-lg text-sm">
+                                <div className="flex justify-between items-center mb-1">
+                                    <span className="font-medium text-primary">You</span>
+                                    <span className="text-xs text-muted-foreground">
+                                        {new Date(reply.createdAt).toLocaleDateString("en-US", {
+                                            month: "short",
+                                            day: "numeric",
+                                            hour: "2-digit",
+                                            minute: "2-digit",
+                                        })}
+                                    </span>
+                                </div>
+                                <p className="whitespace-pre-wrap">{reply.content}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </CardContent>
         </Card>
     );

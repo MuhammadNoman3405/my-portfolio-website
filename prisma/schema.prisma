@@ -118,7 +118,16 @@ model ContactMessage {
   email     String
   message   String
   read      Boolean  @default(false)
+  replies   Reply[]
   createdAt DateTime @default(now())
+}
+
+model Reply {
+  id              String         @id @default(cuid())
+  content         String
+  createdAt       DateTime       @default(now())
+  contactMessage  ContactMessage @relation(fields: [contactMessageId], references: [id], onDelete: Cascade)
+  contactMessageId String
 }
 
 model Visit {

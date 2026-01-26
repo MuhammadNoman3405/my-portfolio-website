@@ -24,7 +24,7 @@ export function AchievementCard({ achievement, getTypeIcon }: { achievement: any
                         <h3 className="text-lg font-semibold text-foreground mb-1">
                             {achievement.title}
                         </h3>
-                        <p className="text-primary font-medium text-sm mb-2 truncate">
+                        <p className="text-primary font-medium text-sm mb-2">
                             {achievement.issuer}
                         </p>
                         <p className="text-xs text-muted-foreground mb-2">

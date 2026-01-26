@@ -205,7 +205,7 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
               </ScrollAnimation>
             ))}
           </div>
-        </ScrollAnimation>
+        </div>
       </div>
     </section>
   );

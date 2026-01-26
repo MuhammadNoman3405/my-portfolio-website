@@ -155,18 +155,20 @@ export default async function AdminDashboard() {
                         </CardContent>
                     </Card>
                 </Link>
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Total Visits</CardTitle>
-                        <div className="flex items-center gap-2">
-                            <ResetVisitsButton />
-                            <User className="h-4 w-4 text-muted-foreground" />
-                        </div>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{stats.visitsCount}</div>
-                    </CardContent>
-                </Card>
+                <Link href="/admin/visits" className="block transition-transform hover:scale-105">
+                    <Card className="h-full">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Total Visits</CardTitle>
+                            <div className="flex items-center gap-2">
+                                <ResetVisitsButton />
+                                <User className="h-4 w-4 text-muted-foreground" />
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{stats.visitsCount}</div>
+                        </CardContent>
+                    </Card>
+                </Link>
             </div>
         </div>
     )

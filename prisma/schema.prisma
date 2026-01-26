@@ -134,6 +134,9 @@ model Visit {
   id        String   @id @default(cuid())
   path      String
   ip        String?
+  country   String?
+  city      String?
+  device    String?  // consolidated from userAgent processing
   userAgent String?
   createdAt DateTime @default(now())
 }

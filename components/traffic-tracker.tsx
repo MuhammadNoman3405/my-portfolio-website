@@ -20,10 +20,10 @@ export function TrafficTracker({ shouldTrack }: { shouldTrack: boolean }) {
                 const storageKey = "portfolio_last_visit"
                 const lastVisit = localStorage.getItem(storageKey)
                 const now = Date.now()
-                const oneDayMs = 24 * 60 * 60 * 1000
+                const oneMonthMs = 30 * 24 * 60 * 60 * 1000
 
-                // If visited within last 24 hours, do NOT count again.
-                if (lastVisit && (now - parseInt(lastVisit)) < oneDayMs) {
+                // If visited within last 30 days, do NOT count again.
+                if (lastVisit && (now - parseInt(lastVisit)) < oneMonthMs) {
                     return
                 }
 

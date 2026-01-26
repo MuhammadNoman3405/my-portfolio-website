@@ -100,32 +100,36 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
   return (
     <section id="projects" className="py-12 sm:py-20 bg-secondary/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollAnimation className="space-y-12">
-          <div className="space-y-2 text-center">
-            <p className="text-primary font-mono text-sm tracking-wider uppercase">
-              Featured Work
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-              Projects
-            </h2>
-          </div>
+        <div className="space-y-12">
+          <ScrollAnimation>
+            <div className="space-y-2 text-center">
+              <p className="text-primary font-mono text-sm tracking-wider uppercase">
+                Featured Work
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+                Projects
+              </h2>
+            </div>
+          </ScrollAnimation>
 
           {/* Filter Buttons */}
-          <div className="flex flex-wrap gap-2 justify-center">
-            {filters.map((filter) => (
-              <button
-                key={filter.id}
-                type="button"
-                onClick={() => setActiveFilter(filter.id)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeFilter === filter.id
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-background text-foreground hover:bg-primary/10 border border-primary/50"
-                  }`}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
+          <ScrollAnimation>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {filters.map((filter) => (
+                <button
+                  key={filter.id}
+                  type="button"
+                  onClick={() => setActiveFilter(filter.id)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeFilter === filter.id
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-background text-foreground hover:bg-primary/10 border border-primary/50"
+                    }`}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
+          </ScrollAnimation>
 
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Monitor, Smartphone, Tablet } from "lucide-react";
+import { DateFormatter } from "@/components/admin/date-formatter";
 
 export default async function VisitsPage() {
     const visits = await prisma.visit.findMany({
@@ -57,7 +58,7 @@ export default async function VisitsPage() {
                             {visits.map((visit) => (
                                 <TableRow key={visit.id}>
                                     <TableCell className="font-medium">
-                                        {new Date(visit.createdAt).toLocaleString()}
+                                        <DateFormatter date={visit.createdAt} />
                                     </TableCell>
                                     <TableCell>
                                         <div className="flex items-center gap-2">

@@ -64,7 +64,7 @@ export async function Achievements() {
 
                     <div className="grid md:grid-cols-2 gap-6">
                         {achievements.map((achievement) => (
-                            <div key={achievement.id} className="relative group">
+                            <div key={achievement.id} className="relative group min-w-0">
                                 {achievement.linkUrl ? (
                                     <a
                                         href={achievement.linkUrl}

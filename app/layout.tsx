@@ -34,6 +34,13 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -42,8 +49,8 @@ export default async function RootLayout({
   const session = await auth()
 
   return (
-    <html lang="en">
-      <body className={`font-sans antialiased`}>
+    <html lang="en" className="overflow-x-hidden">
+      <body className={`font-sans antialiased overflow-x-hidden`}>
         {children}
         {/* Only track if user is NOT logged in (session.user is undefined) */}
         <TrafficTracker shouldTrack={!session?.user} />

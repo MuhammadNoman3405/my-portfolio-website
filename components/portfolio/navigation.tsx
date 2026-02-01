@@ -31,13 +31,13 @@ export function Navigation() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? "bg-pink-100/90 backdrop-blur-md border-b border-pink-200 shadow-sm"
+        ? "bg-background/80 backdrop-blur-md border-b border-border/40 shadow-sm"
         : "bg-transparent"
         }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <a href="#" className={`text-xl font-bold ${isScrolled ? "text-pink-600" : "text-foreground"}`}>
+          <a href="#" className={`text-xl font-bold ${isScrolled ? "text-primary" : "text-foreground"}`}>
             Portfolio
           </a>
 
@@ -47,7 +47,7 @@ export function Navigation() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors ${isScrolled ? "text-gray-800 hover:text-pink-600" : "text-foreground hover:text-primary"
+                className={`text-sm font-medium transition-colors ${isScrolled ? "text-foreground hover:text-primary" : "text-foreground hover:text-primary"
                   }`}
               >
                 {link.label}

@@ -22,7 +22,7 @@ export function ParticlesBackground() {
     return (
         <Particles
             id="tsparticles"
-            className="absolute inset-0 -z-10"
+            className="absolute inset-0 pointer-events-none"
             options={{
                 fullScreen: { enable: false },
                 background: {
@@ -69,8 +69,8 @@ export function ParticlesBackground() {
                         outModes: {
                             default: "bounce",
                         },
-                        random: false,
-                        speed: 1.5, // Gentle movement
+                        random: true,
+                        speed: 1,
                         straight: false,
                     },
                     number: {

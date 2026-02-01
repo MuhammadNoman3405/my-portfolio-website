@@ -163,12 +163,13 @@ export function Contact() {
         </ScrollAnimation>
 
         {/* Footer Bottom */}
-        <div className="pt-8 border-t border-border">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="pt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pb-8">
             <p className="text-sm text-primary font-medium flex items-center gap-2">
               Reserved by <span className="text-primary animate-pulse">❤️</span> <span className="font-semibold">Muhammad Noman</span>
             </p>
           </div>
+          <div className="border-t border-border w-full"></div>
         </div>
       </div>
     </footer>

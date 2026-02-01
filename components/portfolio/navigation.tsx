@@ -54,7 +54,7 @@ export function Navigation() {
               </a>
             ))}
             <Button size="sm" className="gap-2" asChild>
-              <a href="/api/resume" download>
+              <a href="#resume">
                 <Download className="w-4 h-4" />
                 Resume
               </a>
@@ -91,7 +91,7 @@ export function Navigation() {
                 </a>
               ))}
               <Button size="sm" className="gap-2 w-fit" asChild>
-                <a href="/api/resume" download>
+                <a href="#resume">
                   <Download className="w-4 h-4" />
                   Resume
                 </a>

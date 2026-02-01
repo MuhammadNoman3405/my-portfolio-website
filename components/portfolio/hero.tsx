@@ -5,15 +5,18 @@ import { prisma } from "@/lib/prisma";
 
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
 
+import { ParticlesBackground } from "@/components/portfolio/particles-background";
+
 export async function Hero() {
   const profile = await prisma.profile.findFirst();
 
   return (
     <section
       id="about"
-      className="min-h-[60vh] sm:min-h-screen flex items-center justify-center pt-24 pb-12 sm:pt-16 sm:pb-0"
+      className="min-h-[60vh] sm:min-h-screen flex items-center justify-center pt-24 pb-12 sm:pt-16 sm:pb-0 relative overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-20">
+      <ParticlesBackground />
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <ScrollAnimation className="space-y-6 order-2 lg:order-1">
             <div className="space-y-2">

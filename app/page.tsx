@@ -10,6 +10,7 @@ import { GitHubActivity } from "@/components/portfolio/github-activity";
 import { Contact } from "@/components/portfolio/contact";
 import { Resume } from "@/components/portfolio/resume";
 import { prisma } from "@/lib/prisma";
+import { ParticlesBackground } from "@/components/portfolio/particles-background";
 
 // Revalidate every 60 seconds in production (change to 0 for instant updates during development)
 export const revalidate = 0;
@@ -46,7 +47,8 @@ export default async function Portfolio() {
   const { projects, skills, certifications, resume } = await getData();
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background relative">
+      <ParticlesBackground />
       <Navigation />
       <Hero />
       <Education />

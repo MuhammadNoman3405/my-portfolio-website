@@ -22,7 +22,7 @@ export function ParticlesBackground() {
     return (
         <Particles
             id="tsparticles"
-            className="absolute inset-0 pointer-events-none"
+            className="fixed inset-0 pointer-events-none z-0"
             options={{
                 fullScreen: { enable: false },
                 background: {

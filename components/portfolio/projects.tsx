@@ -82,7 +82,7 @@ const staticProjects: Project[] = [
 const filters = [
   { id: "all", label: "All" },
   { id: "ml", label: "Machine Learning" },
-  { id: "web", label: "Web Dev" },
+
   { id: "data", label: "Data Analysis" },
   { id: "semester", label: "Semester Projects" },
 ];
